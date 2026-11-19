@@ -32,7 +32,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="10.0.0" />
     <!-- Local (SAM) account management: create/reset/enable/disable local users. -->
-    <PackageReference Include="System.DirectoryServices.AccountManagement" Version="10.0.0" />
+    <PackageReference Include="System.DirectoryServices.AccountManagement" Version="11.0.0" />
     <!-- Hardware inventory (CPU/RAM/disk/OS) via WMI for the inventory export feature. -->
     <PackageReference Include="System.Management" Version="10.0.0" />
     <!-- `dynamic` WScript.Shell COM automation, used to resolve Startup-folder .lnk shortcut targets (AutorunHandler). -->
