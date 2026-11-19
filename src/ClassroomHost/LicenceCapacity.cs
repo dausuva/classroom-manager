@@ -9,7 +9,7 @@ namespace ClassroomManager.Host;
 public sealed record CapacityPlan(IReadOnlyList<ClientInfo> Acting, IReadOnlyList<ClientInfo> Waiting);
 
 /// <summary>
-/// The free tier of the official Host (T-220): without a licence it works with up to <see cref="FreeComputers"/> computers online at the same time;
+/// The free tier of the official Host and of the unsigned release builds (T-220): without a licence it works with up to <see cref="FreeComputers"/> computers online at the same time;
 /// a licence covers the number of computers it names. A build made from the source has no limit. The limit is never a reason to undo anything:
 /// computers that wait are simply not sent new actions, and a school that has held a licence keeps its capacity when the licence ends.
 /// </summary>
@@ -22,7 +22,7 @@ public static class LicenceCapacity
 
     /// <summary>The limit that applies to a command line or scheduled run on this Host now; null when there is none.</summary>
     public static int? AllowedNow() =>
-        Allowed(BuildEdition.IsOfficial, LicenceKeys.Trusted.Length > 0, HostLicence.Read(DateOnly.FromDateTime(DateTime.Now)));
+        Allowed(BuildEdition.HasFreeLimit, LicenceKeys.Trusted.Length > 0, HostLicence.Read(DateOnly.FromDateTime(DateTime.Now)));
 
     /// <summary>True when something answers on the computer's Client port within the time given; this is how a command-line run learns who is online.</summary>
     public static async Task<bool> IsOnlineAsync(string address, int port, TimeSpan timeout, CancellationToken ct = default)

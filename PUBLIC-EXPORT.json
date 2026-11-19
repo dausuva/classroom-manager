@@ -1,9 +1,9 @@
 {
     "schema":  1,
-    "sourceRevision":  "d476ef0dfed27bde3c4565595eca81f8e7a1e92e",
-    "sourceTree":  "b60907c3466edcbaf078675ad8a3ef70ecaa692f",
+    "sourceRevision":  "c3d1bd273db9a5a7b75d4edecb8cf36379dfeeb9",
+    "sourceTree":  "26bcd6900ce5c8e0418b85235c4c8569d53783f8",
     "manifestSha256":  "3294F6ADE87FA1D9DC7392331814A70532CC57E9E78FD3395220B520BB202AD8",
-    "fileCount":  1028,
+    "fileCount":  1029,
     "needsReview":  [
                         "BUILDING.md",
                         "deploy/access-keys.json.example",
@@ -119,6 +119,7 @@
                         "tests/ClassroomHost.Tests/FormDialogLayoutTests.cs",
                         "tests/ClassroomHost.Tests/FormDialogRequireTests.cs",
                         "tests/ClassroomHost.Tests/FrameworkReferenceAssertions.cs",
+                        "tests/ClassroomHost.Tests/FreeLimitBuildTests.cs",
                         "tests/ClassroomHost.Tests/GuiScheduleRunnerTests.cs",
                         "tests/ClassroomHost.Tests/HelpGuideTests.cs",
                         "tests/ClassroomHost.Tests/HelpScreenshots.cs",
@@ -332,8 +333,8 @@
                   },
                   {
                       "path":  ".github/workflows/release.yml",
-                      "bytes":  16612,
-                      "sha256":  "70A13940B3D5148EEB4B5132C2C906BFB45BA93E6BA328BD64541FA931807C36"
+                      "bytes":  15871,
+                      "sha256":  "E9055C49B569656B9146B15DB8F5F0C8F66DBC4D1068C8880B67FAD05B98CFBD"
                   },
                   {
                       "path":  ".gitignore",
@@ -487,8 +488,8 @@
                   },
                   {
                       "path":  "Directory.Build.props",
-                      "bytes":  4607,
-                      "sha256":  "F2DA351025B42D9168EF0FE7E6E35ABC7D70DB28BA6C1E1B0EC41A73A5B6E7E2"
+                      "bytes":  5020,
+                      "sha256":  "F64D396704BAD15B4C20BF6C921F2C0A1BBF03D69F64D4E32111812F6306ADB8"
                   },
                   {
                       "path":  "docs/ARCHITECTURE.md",
@@ -1517,8 +1518,8 @@
                   },
                   {
                       "path":  "scripts/Build-PublicRelease.ps1",
-                      "bytes":  6878,
-                      "sha256":  "3365171D8FBDF84F355392916C314F0B4F964F304BE45066F5B0CED6CF15112F"
+                      "bytes":  6908,
+                      "sha256":  "BB871FBD31AEE52D2B88F262FCD243898AA56E03B6CF8E19C7A4EA3856B2A1D9"
                   },
                   {
                       "path":  "scripts/Export-Sbom.ps1",
@@ -1942,8 +1943,8 @@
                   },
                   {
                       "path":  "src/ClassroomHost/AboutWindow.cs",
-                      "bytes":  6440,
-                      "sha256":  "8F2CD50BE4CED4EB57DC846FD91B62D6D243805AD4D8DDD48AA0D5F6A2DC0667"
+                      "bytes":  6442,
+                      "sha256":  "A50994234D44258E65C6583E3F7E5F69D8EE58E8A0D38D6D37ED332287885C15"
                   },
                   {
                       "path":  "src/ClassroomHost/AccessKeysWindow.cs",
@@ -2082,8 +2083,8 @@
                   },
                   {
                       "path":  "src/ClassroomHost/BuildEdition.cs",
-                      "bytes":  815,
-                      "sha256":  "9DA7EAB731C30CDB53906E992CED03ACE5302EC7C15F096298F4EE7FC3B6B17B"
+                      "bytes":  1521,
+                      "sha256":  "4C7240B6656CDE2E224E764F93D5E3AC7AE81E52ACBA3CC735CA4865D9A888BC"
                   },
                   {
                       "path":  "src/ClassroomHost/BuiltInModules.cs",
@@ -2152,8 +2153,8 @@
                   },
                   {
                       "path":  "src/ClassroomHost/ClassroomHost.csproj",
-                      "bytes":  8336,
-                      "sha256":  "02F2875BA39E39D8EB996A3BF7B1669D33B03E1EBFA71A8377CCDBB090E969B0"
+                      "bytes":  8421,
+                      "sha256":  "49C153C3B85B2C6724628336A77A5991C2EC7FAB100E18009BB55FBD54C8E36E"
                   },
                   {
                       "path":  "src/ClassroomHost/CliAppearance.cs",
@@ -2652,8 +2653,8 @@
                   },
                   {
                       "path":  "src/ClassroomHost/LicenceCapacity.cs",
-                      "bytes":  4705,
-                      "sha256":  "2458C756EC7194FDD113D32D57FC30E354A4AA82C1B25947325422B24BC3EE88"
+                      "bytes":  4742,
+                      "sha256":  "0AECF4AE0EBDF7B199AECC7757D8E6002168886F9BCC2D2792464F90E451F8FB"
                   },
                   {
                       "path":  "src/ClassroomHost/LocalFolderCreation.cs",
@@ -2712,8 +2713,8 @@
                   },
                   {
                       "path":  "src/ClassroomHost/MainWindow.Licence.cs",
-                      "bytes":  1123,
-                      "sha256":  "AA8DBEAB3E7D78704FFA6FB8C65FB3BBA32047A7A9EA8570191361BD1396DA19"
+                      "bytes":  1125,
+                      "sha256":  "6B006A0ABB4FCA5BD7F3E2A5F42D8577E2357E09D4F29796E9D337D79C9B40EF"
                   },
                   {
                       "path":  "src/ClassroomHost/MainWindow.Operations.cs",
@@ -4354,6 +4355,11 @@
                       "path":  "tests/ClassroomHost.Tests/FrameworkReferenceAssertions.cs",
                       "bytes":  574,
                       "sha256":  "12D589AC168D83304815E1C7144049302E726F4B81D57999D4C7D8B3ADEC04E1"
+                  },
+                  {
+                      "path":  "tests/ClassroomHost.Tests/FreeLimitBuildTests.cs",
+                      "bytes":  3547,
+                      "sha256":  "9A19CDFAE19099DE8B74DC79614C5023C6ABB0183687007A249B37258E88CB1C"
                   },
                   {
                       "path":  "tests/ClassroomHost.Tests/GuiScheduleRunnerTests.cs",

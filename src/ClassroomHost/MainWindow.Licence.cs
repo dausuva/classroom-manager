@@ -13,7 +13,7 @@ public partial class MainWindow
     /// </summary>
     List<ClientInfo> LimitToLicence(List<ClientInfo> selection)
     {
-        var allowed = LicenceCapacity.Allowed(BuildEdition.IsOfficial, LicenceKeys.Trusted.Length > 0, HostLicence.Read(DateOnly.FromDateTime(DateTime.Now)));
+        var allowed = LicenceCapacity.Allowed(BuildEdition.HasFreeLimit, LicenceKeys.Trusted.Length > 0, HostLicence.Read(DateOnly.FromDateTime(DateTime.Now)));
         if (allowed is not { } limit) return selection;
         var plan = LicenceCapacity.Plan(_clients.ToList(), selection, limit);
         if (plan.Waiting.Count == 0) return selection;

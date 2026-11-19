@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <AssemblyMetadata Include="ClassroomOfficial" Value="$(ClassroomOfficial)" />
+    <AssemblyMetadata Include="ClassroomFreeLimit" Value="$(ClassroomFreeLimit)" />
   </ItemGroup>
   <ItemGroup Condition="'$(EnableReportingModule)' != 'true'">
     <Compile Remove="InventoryReportData.cs;InventoryReportExport.cs" />

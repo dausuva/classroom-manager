@@ -45,7 +45,7 @@ if ($Stage -eq 'Binaries') {
     foreach ($app in $apps) {
         $target = Join-Path $binaries $app.Folder
         Write-Host "Publishing the $($app.Name) $version..." -ForegroundColor Cyan
-        & (Join-Path $root "deploy\$($app.Publish)") -OutputDir $target -RuntimeMode SelfContained -Runtime win-x64 -SkipChecksums -MsBuildArgs @("-p:InformationalVersion=$version")
+        & (Join-Path $root "deploy\$($app.Publish)") -OutputDir $target -RuntimeMode SelfContained -Runtime win-x64 -SkipChecksums -MsBuildArgs @("-p:InformationalVersion=$version", "-p:ClassroomFreeLimit=true")
         if ($LASTEXITCODE -ne 0) { throw "Publishing the $($app.Name) failed." }
         if (-not (Test-Path -LiteralPath (Join-Path $target $app.Exe))) { throw "$($app.Exe) is missing from $target." }
     }

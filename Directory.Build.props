@@ -13,6 +13,9 @@
          the whole product. -->
     <!-- True only for the official builds (the release scripts pass -p:ClassroomOfficial=true); a build from the source is the free line with no computer limit. -->
     <ClassroomOfficial Condition="'$(ClassroomOfficial)' == ''">false</ClassroomOfficial>
+    <!-- True for the builds that apply the free tier's limit of 3 computers online at once: the official builds and the unsigned release builds of the public repository
+         (Build-PublicRelease.ps1 passes -p:ClassroomFreeLimit=true). A build you make yourself from the source (Build-Free.ps1) has no limit. -->
+    <ClassroomFreeLimit Condition="'$(ClassroomFreeLimit)' == ''">false</ClassroomFreeLimit>
     <ClassroomNetVersion>10.0</ClassroomNetVersion>
     <ClassroomTargetFramework>net$(ClassroomNetVersion)</ClassroomTargetFramework>
     <ClassroomWindowsTargetFramework>net$(ClassroomNetVersion)-windows</ClassroomWindowsTargetFramework>
@@ -62,9 +65,9 @@
 
     <!-- Bump these together when you cut a release (Version drives both
          AssemblyVersion and FileVersion unless overridden below). -->
-    <Version>1.2.1</Version>
-    <AssemblyVersion>1.2.1.0</AssemblyVersion>
-    <FileVersion>1.2.1.0</FileVersion>
+    <Version>1.2.2</Version>
+    <AssemblyVersion>1.2.2.0</AssemblyVersion>
+    <FileVersion>1.2.2.0</FileVersion>
 
     <!-- Fewer files / smaller publish output
          SatelliteResourceLanguages: NuGet packages (e.g.

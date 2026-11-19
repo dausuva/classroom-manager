@@ -56,7 +56,7 @@ public sealed class AboutWindow : Window
         computerIdText.ToolTip = "A licence is issued for one computer. Give this ID when you ask for a licence; it is the same for every Windows user of this PC.";
         void ShowLicence()
         {
-            var (headline, detail, note) = HostLicence.Describe(HostLicence.Read(DateOnly.FromDateTime(DateTime.Now)), computersListed, LicenceKeys.Trusted.Length > 0, BuildEdition.IsOfficial && LicenceKeys.Trusted.Length > 0);
+            var (headline, detail, note) = HostLicence.Describe(HostLicence.Read(DateOnly.FromDateTime(DateTime.Now)), computersListed, LicenceKeys.Trusted.Length > 0, BuildEdition.HasFreeLimit && LicenceKeys.Trusted.Length > 0);
             licenceHeadline.Text = headline;
             licenceDetail.Text = detail;
             licenceNote.Text = note;

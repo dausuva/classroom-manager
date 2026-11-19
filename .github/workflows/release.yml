@@ -204,18 +204,6 @@ jobs:
         with:
           name: release-files
           path: release
-      - name: Same files under names without the version
-        # The website links to https://github.com/dausuva/classroom-manager/releases/latest/download/<name>, which needs a name that never changes.
-        # The copies are made after signing, from the files that will be released, and listed in SHA256SUMS.txt.
-        run: |
-          cd release
-          for kind in Host-Setup Client-Setup Host Client; do
-            file=$(ls Dausuva-Classroom-${kind}-[0-9]*-win-x64.exe 2>/dev/null | head -n 1 || true)
-            [ -n "$file" ] || continue
-            cp "$file" "Dausuva-Classroom-${kind}-win-x64.exe"
-            sha256sum "Dausuva-Classroom-${kind}-win-x64.exe" >> SHA256SUMS.txt
-          done
-          ls -l
       - name: Create the GitHub release
         uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2
         with:
