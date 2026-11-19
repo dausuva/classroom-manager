@@ -74,7 +74,8 @@ jobs:
           foreach ($exe in 'free-build/client/ClassroomClient.exe', 'free-build/host/ClassroomHost.exe') {
             $signature = (Get-AuthenticodeSignature $exe).Status
             if ($signature -ne 'NotSigned') { throw "$exe must be unsigned, found: $signature" }
-            if (-not (Get-Item $exe).VersionInfo.ProductVersion.EndsWith('-self-built')) { throw "$exe is not marked as self-built." }
+            # The SDK appends "+<commit>" to the version it is given, so "1.2.1-self-built" is read back as "1.2.1-self-built+<commit>".
+            if ((Get-Item $exe).VersionInfo.ProductVersion -notmatch '-self-built(\+[0-9a-f]+)?$') { throw "$exe is not marked as self-built." }
           }
           if (-not (Test-Path 'free-build/host/SELF-BUILT-UNOFFICIAL.txt')) { throw 'The unofficial notice is missing.' }
 
