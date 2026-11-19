@@ -4,9 +4,9 @@
     "net10.0-windows7.0": {
       "coverlet.collector": {
         "type": "Direct",
-        "requested": "[6.0.2, )",
-        "resolved": "6.0.2",
-        "contentHash": "bJShQ6uWRTQ100ZeyiMqcFlhP7WJ+bCuabUs885dJiBEzMsJMSFr7BOyeCw4rgvQokteGi5rKQTlkhfQPUXg2A=="
+        "requested": "[10.1.1, )",
+        "resolved": "10.1.1",
+        "contentHash": "iRWGpNzKG6/pA0VzAt+WDzFAPMHvs/E4ZxeSYiEaAa7MzFhAcWcIWd7RDNLhCBenpSNdJCwm42UcQP4nGUbwJQ=="
       },
       "Microsoft.NET.Test.Sdk": {
         "type": "Direct",
@@ -451,54 +451,48 @@
       "classroomclient": {
         "type": "Project",
         "dependencies": {
-          "ClassroomManager.Shared": "[1.2.0, )",
+          "ClassroomManager.Shared": "[1.2.1, )",
           "Microsoft.Extensions.Hosting.WindowsServices": "[10.0.0, )",
           "System.DirectoryServices.AccountManagement": "[10.0.0, )",
           "System.Management": "[10.0.0, )"
         }
       },
-      "classroomhealth": {
-        "type": "Project",
-        "dependencies": {
-          "ClassroomHost": "[1.2.0, )"
-        }
-      },
       "classroomhost": {
         "type": "Project",
         "dependencies": {
-          "ClassroomManager.Appearance": "[1.2.0, )",
-          "ClassroomManager.Automation": "[1.2.0, )",
-          "ClassroomManager.BrowserInventory": "[1.2.0, )",
-          "ClassroomManager.Maintenance": "[1.2.0, )",
-          "ClassroomManager.Modules.Runtime": "[1.2.0, )",
-          "ClassroomManager.Reporting": "[1.2.0, )",
-          "ClassroomManager.Shared": "[1.2.0, )",
-          "ClassroomManager.SoftwareInventory": "[1.2.0, )",
-          "ClassroomManager.StudentWork": "[1.2.0, )"
+          "ClassroomManager.Appearance": "[1.2.1, )",
+          "ClassroomManager.Automation": "[1.2.1, )",
+          "ClassroomManager.BrowserInventory": "[1.2.1, )",
+          "ClassroomManager.Maintenance": "[1.2.1, )",
+          "ClassroomManager.Modules.Runtime": "[1.2.1, )",
+          "ClassroomManager.Reporting": "[1.2.1, )",
+          "ClassroomManager.Shared": "[1.2.1, )",
+          "ClassroomManager.SoftwareInventory": "[1.2.1, )",
+          "ClassroomManager.StudentWork": "[1.2.1, )"
         }
       },
       "classroommanager.appearance": {
         "type": "Project",
         "dependencies": {
-          "ClassroomManager.Modules.Contract": "[1.2.0, )"
+          "ClassroomManager.Modules.Contract": "[1.2.1, )"
         }
       },
       "classroommanager.automation": {
         "type": "Project",
         "dependencies": {
-          "ClassroomManager.Modules.Contract": "[1.2.0, )"
+          "ClassroomManager.Modules.Contract": "[1.2.1, )"
         }
       },
       "classroommanager.browserinventory": {
         "type": "Project",
         "dependencies": {
-          "ClassroomManager.Modules.Contract": "[1.2.0, )"
+          "ClassroomManager.Modules.Contract": "[1.2.1, )"
         }
       },
       "classroommanager.maintenance": {
         "type": "Project",
         "dependencies": {
-          "ClassroomManager.Modules.Contract": "[1.2.0, )"
+          "ClassroomManager.Modules.Contract": "[1.2.1, )"
         }
       },
       "classroommanager.modules.contract": {
@@ -507,13 +501,13 @@
       "classroommanager.modules.runtime": {
         "type": "Project",
         "dependencies": {
-          "ClassroomManager.Modules.Contract": "[1.2.0, )"
+          "ClassroomManager.Modules.Contract": "[1.2.1, )"
         }
       },
       "classroommanager.reporting": {
         "type": "Project",
         "dependencies": {
-          "ClassroomManager.Modules.Contract": "[1.2.0, )"
+          "ClassroomManager.Modules.Contract": "[1.2.1, )"
         }
       },
       "classroommanager.shared": {
@@ -522,13 +516,13 @@
       "classroommanager.softwareinventory": {
         "type": "Project",
         "dependencies": {
-          "ClassroomManager.Modules.Contract": "[1.2.0, )"
+          "ClassroomManager.Modules.Contract": "[1.2.1, )"
         }
       },
       "classroommanager.studentwork": {
         "type": "Project",
         "dependencies": {
-          "ClassroomManager.Modules.Contract": "[1.2.0, )"
+          "ClassroomManager.Modules.Contract": "[1.2.1, )"
         }
       }
     },
