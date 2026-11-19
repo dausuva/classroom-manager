@@ -1,0 +1,13 @@
+# Classroom Manager translation file (gettext PO).
+# msgid is the English text and must not be changed; msgstr is its translation.
+# Keep every {0}, {1}... of the English text in the translation; they stand for a number or a name.
+# An underscore marks the keyboard shortcut letter of a button (Alt+letter); put it before a letter of your choice or leave it out.
+msgid ""
+msgstr ""
+"Language: \n"
+"Language-Name: \n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+#: ClassroomHost/StudentBackup.cs
+msgid "{0} file(s) copied, {1} already there"
+msgstr ""

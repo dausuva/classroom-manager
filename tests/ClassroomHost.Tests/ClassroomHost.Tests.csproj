@@ -1,0 +1,72 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>$(ClassroomWindowsTargetFramework)</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <RootNamespace>ClassroomHost.Tests</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector" Version="6.0.2">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\ClassroomHost\ClassroomHost.csproj" />
+    <ProjectReference Include="..\..\src\Modules\Runtime\ClassroomManager.Modules.Runtime.csproj" />
+  </ItemGroup>
+
+  <!-- The two optional modules are small libraries: their own tests compile and run in every build. The tests of the Host code that
+       exists only while a module is built in (ClassroomModules.props) drop out with it. -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Modules\Reporting\ClassroomManager.Reporting.csproj" />
+    <ProjectReference Include="..\..\src\Modules\BrowserInventory\ClassroomManager.BrowserInventory.csproj" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(EnableBrowserInventoryModule)' != 'true'">
+    <Compile Remove="BrowserInventoryLoaderTests.cs;BrowserInventorySummaryTests.cs;LiveBrowserInventoryModuleTests.cs" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(EnableReportingModule)' != 'true'">
+    <Compile Remove="InventoryReportExportTests.cs;LiveReportingModuleTests.cs" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(EnableReportingModule)' != 'true' Or '$(EnableBrowserInventoryModule)' != 'true'">
+    <Compile Remove="LiveModulePortPathTests.cs" />
+  </ItemGroup>
+  <PropertyGroup Condition="'$(EnableReportingModule)' == 'true'">
+    <DefineConstants>$(DefineConstants);REPORTING_MODULE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(EnableBrowserInventoryModule)' == 'true'">
+    <DefineConstants>$(DefineConstants);BROWSER_INVENTORY_MODULE</DefineConstants>
+  </PropertyGroup>
+
+  <!-- The seller's desk is private (T-219): the public source has no ClassroomDesk project, so its reference and tests drop out together. -->
+  <ItemGroup Condition="Exists('..\..\src\ClassroomDesk\ClassroomDesk.csproj')">
+  </ItemGroup>
+  <PropertyGroup Condition="Exists('..\..\src\ClassroomDesk\ClassroomDesk.csproj')">
+    <DefineConstants>$(DefineConstants);WITH_DESK</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Compatibility logic stays outside the production Host assembly. -->
+    <!-- The screen saver targets .NET Framework 4.8 and cannot be referenced from here,
+         so its dependency-free command-line parser is compiled into the tests directly. -->
+    <!-- The Client is an executable and is not referenced by any test project; its self-contained
+         Core Audio interop is compiled in so the COM declarations are exercised on Windows. -->
+    <Compile Include="..\..\src\ClassroomClient\AudioEndpoints.cs" Link="Client\AudioEndpoints.cs" />
+    <Compile Include="..\..\src\ClassroomClient\StagingOwnership.cs" Link="Client\StagingOwnership.cs" />
+    <Compile Include="..\..\src\ClassroomClient\BrowserPolicyStore.cs" Link="Client\BrowserPolicyStore.cs" />
+    <Compile Include="..\..\src\ClassroomClient\BrowserDataStore.cs" Link="Client\BrowserDataStore.cs" />
+  </ItemGroup>
+
+</Project>

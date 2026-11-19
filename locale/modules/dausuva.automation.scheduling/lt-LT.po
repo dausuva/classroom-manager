@@ -1,0 +1,267 @@
+# Classroom Manager translation file (gettext PO).
+# msgid is the English text and must not be changed; msgstr is its translation.
+# Keep every {0}, {1}... of the English text in the translation; they stand for a number or a name.
+# An underscore marks the keyboard shortcut letter of a button (Alt+letter); put it before a letter of your choice or leave it out.
+msgid ""
+msgstr ""
+"Language: lt-LT\n"
+"Language-Name: Lietuvių\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+#: ClassroomHost/ScheduleRuns.cs
+msgid "Sync the computers' time"
+msgstr "Kompiuterių laiko sinchronizavimas"
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "All computers"
+msgstr "Visi kompiuteriai"
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Room: {0}"
+msgstr "Klasė: {0}"
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Lock screen (with message)"
+msgstr "Užrakinti ekraną (su žinute)"
+
+#: ClassroomHost/MainWindow.xaml.cs
+#: ClassroomHost/QuickActions.cs
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Unlock screen"
+msgstr "Atrakinti ekraną"
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Show message pop-up"
+msgstr "Rodyti iškylančią žinutę"
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Wake up (Wake-on-LAN)"
+msgstr "Pažadinti („Wake-on-LAN“)"
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Sync time to this computer"
+msgstr "Sinchronizuoti laiką pagal šį kompiuterį"
+
+#: ClassroomHost/CustomQuickAction.cs
+#: ClassroomHost/MainWindow.xaml.cs
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Shut down"
+msgstr "Išjungti"
+
+#: ClassroomHost/CustomQuickAction.cs
+#: ClassroomHost/MainWindow.xaml.cs
+#: ClassroomHost/PowerDelays.cs
+msgid "Restart"
+msgstr "Paleisti iš naujo"
+
+#: ClassroomHost/CustomQuickAction.cs
+#: ClassroomHost/MainWindow.xaml.cs
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Sleep"
+msgstr "Užmigdyti"
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Run command (cmd, elevated)"
+msgstr "Vykdyti komandą (cmd, padidintos teisės)"
+
+#: ClassroomHost/HostSettings.cs
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Mon"
+msgstr "Pr"
+
+#: ClassroomHost/HostSettings.cs
+#: ClassroomHost/ScheduleRuns.cs
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Tue"
+msgstr "An"
+
+#: ClassroomHost/HostSettings.cs
+#: ClassroomHost/ScheduleRuns.cs
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Wed"
+msgstr "Tr"
+
+#: ClassroomHost/HostSettings.cs
+#: ClassroomHost/ScheduleRuns.cs
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Thu"
+msgstr "Kt"
+
+#: ClassroomHost/HostSettings.cs
+#: ClassroomHost/ScheduleRuns.cs
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Fri"
+msgstr "Pn"
+
+#: ClassroomHost/ScheduleRuns.cs
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Sat"
+msgstr "Št"
+
+#: ClassroomHost/ScheduleRuns.cs
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Sun"
+msgstr "Sk"
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Scheduled actions"
+msgstr "Suplanuoti veiksmai"
+
+#: ClassroomHost/MainWindow.xaml.cs
+#: ClassroomHost/SchedulesWindow.cs
+msgid "On"
+msgstr "Įjungta"
+
+#: ClassroomHost/AccountsWindow.cs
+#: ClassroomHost/AutorunsWindow.cs
+#: ClassroomHost/BulkFileManagerWindow.cs
+msgid "Name"
+msgstr "Pavadinimas"
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Time"
+msgstr "Laikas"
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Days"
+msgstr "Dienos"
+
+#: ClassroomHost/BulkWindowsUpdateWindow.cs
+#: ClassroomHost/CustomQuickActionsWindow.cs
+#: ClassroomHost/MainWindow.xaml.cs
+msgid "Action"
+msgstr "Veiksmas"
+
+#: ClassroomHost/MainWindow.xaml
+#: ClassroomHost/SchedulesWindow.cs
+#: ClassroomHost/UiTranslator.cs
+msgid "Target"
+msgstr "Paskirtis"
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Latest run"
+msgstr "Paskutinis vykdymas"
+
+#: ClassroomHost/MainWindow.xaml
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Progress"
+msgstr "Eiga"
+
+#: ClassroomHost/FavoriteCommandsWindow.cs
+#: ClassroomHost/LabKeysWindow.cs
+#: ClassroomHost/SchedulesWindow.cs
+msgid "_Add..."
+msgstr "_Pridėti..."
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "_Enable / disable"
+msgstr "Į_jungti / išjungti"
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "_Delete"
+msgstr "_Ištrinti"
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Schedules run once a day at the chosen time while this Host is open, and also while it is closed when Host settings say so (a time missed by up to 10 minutes still runs). Times are this computer's local time. \"Sync the computers' time\" is a sample: enable it to set every computer's clock to this PC's each day."
+msgstr "Tvarkaraščiai vykdomi kartą per dieną pasirinktu laiku, kol Host atidarytas, ir uždarius jį, jei taip nustatyta Host nustatymuose (praleistas laikas iki 10 minučių vis tiek įvykdomas). Laikas nurodomas pagal šio kompiuterio vietos laiką. „Kompiuterių laiko sinchronizavimas“ yra pavyzdys: įjunkite jį, kad kiekvieno kompiuterio laikrodis kasdien būtų nustatomas pagal šio kompiuterio."
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Ran on {0}"
+msgstr "Įvykdyta {0}"
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "{0} of {1} computer(s) since {2}"
+msgstr "{0} iš {1} kompiuterių nuo {2}"
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "; {0} outcome(s) unknown: review before retrying"
+msgstr "; nežinomų rezultatų: {0}; prieš kartodami patikrinkite"
+
+#: ClassroomHost/MainWindow.xaml.cs
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Selected computers ({0})"
+msgstr "Pasirinkti kompiuteriai ({0})"
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Room: "
+msgstr "Klasė: "
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "New scheduled action"
+msgstr "Naujas suplanuotas veiksmas"
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Morning lock"
+msgstr "Rytinis užrakinimas"
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Time (HH:mm, 24-hour)"
+msgstr "Laikas (HH:mm, 24 val.)"
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Applies to"
+msgstr "Taikoma"
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Title (lock / message)"
+msgstr "Pavadinimas (užraktas / žinutė)"
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Notice"
+msgstr "Pranešimas"
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Message text, or command line for \"Run command\""
+msgstr "Žinutės tekstas arba komandos eilutė veiksmui „Vykdyti komandą“"
+
+#: ClassroomHost/HostCli.cs
+#: ClassroomHost/HostSettings.cs
+#: ClassroomHost/MainWindow.xaml.cs
+msgid "Please look at the teacher."
+msgstr "Prašome žiūrėti į mokytoją."
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Monthly: only the first of the ticked weekdays in each month"
+msgstr "Kas mėnesį: tik pirmoji pažymėta savaitės diena kiekvieną mėnesį"
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Catch up: computers that are off at that time get it as soon as they are online, until the next time (not for lock, message, wake or power)"
+msgstr "Pasivyti: tuo metu išjungti kompiuteriai jį gauna, kai tik prisijungia, iki kito karto (ne užrakinimui, pranešimui, pažadinimui ar maitinimui)"
+
+#: ClassroomHost/FavoriteCommandsWindow.cs
+#: ClassroomHost/KeyboardLayoutsWindow.cs
+#: ClassroomHost/LabKeysWindow.cs
+msgid "Add"
+msgstr "Pridėti"
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Enter the time as HH:mm, for example 08:30."
+msgstr "Laiką įveskite formatu HH:mm, pvz., 08:30."
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Schedule"
+msgstr "Tvarkaraštis"
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Lock, message, wake and power do not catch up: hours late they would surprise a class. Untick Catch up for this action."
+msgstr "Užrakinimas, pranešimas, pažadinimas ir maitinimas nepasiveja: valandomis vėliau jie nustebintų klasę. Šiam veiksmui nuimkite „Pasivyti“."
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Pick at least one day."
+msgstr "Pasirinkite bent vieną dieną."
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Select computers in the main window first, or pick a room."
+msgstr "Pirmiausia pasirinkite kompiuterius pagrindiniame lange arba pasirinkite klasę."
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "on"
+msgstr "įjungta"
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "off"
+msgstr "išjungta"
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "1st "
+msgstr "1-oji "

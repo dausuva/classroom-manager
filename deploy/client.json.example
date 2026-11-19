@@ -1,0 +1,9 @@
+{
+  "psk": "change-me-to-a-long-random-secret",
+  "tcpPort": 5050,
+  "udpPort": 5051,
+  "allowedRoots": [
+    "C:\\Users"
+  ],
+  "allowedUpdateSignerCertificateSha256": []
+}

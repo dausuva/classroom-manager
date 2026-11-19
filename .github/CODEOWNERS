@@ -1,0 +1,6 @@
+# Every change is reviewed by a code owner (see CONTRIBUTING.md). Replace with the maintainers' GitHub accounts or team before the first push.
+*                    @dausuva
+/src/Shared/         @dausuva
+/.github/            @dausuva
+/.signpath/          @dausuva
+/CODE_SIGNING_POLICY.md @dausuva

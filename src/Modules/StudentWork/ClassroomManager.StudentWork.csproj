@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>$(ClassroomTargetFramework)</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>ClassroomManager.StudentWork</RootNamespace>
+    <AssemblyName>ClassroomManager.StudentWork</AssemblyName>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Contract\ClassroomManager.Modules.Contract.csproj" />
+  </ItemGroup>
+</Project>

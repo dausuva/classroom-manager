@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>$(ClassroomWindowsTargetFramework)</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>ClassroomManager.Client</RootNamespace>
+    <AssemblyName>ClassroomClient</AssemblyName>
+
+    <!-- Shown as "File description" in Explorer > Properties > Details -->
+    <AssemblyTitle>Dausuva Classroom Client</AssemblyTitle>
+    <Description>Dausuva Classroom Client service and per-user helper for student PCs.</Description>
+
+    <!-- Publish as one .exe instead of dozens of files (see deploy\Publish-Client.ps1).
+         Only takes effect for a self-contained, RID-specific `dotnet publish`;
+         plain `dotnet build` / non-RID publish ignore these. -->
+    <PublishSingleFile>true</PublishSingleFile>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+
+    <!-- Small desktop/service processes favor footprint over server-style GC throughput. -->
+    <ServerGarbageCollection>false</ServerGarbageCollection>
+    <ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>
+    <RetainVMGarbageCollection>false</RetainVMGarbageCollection>
+
+    <!-- Explorer icon for ClassroomClient.exe/.dll -->
+    <ApplicationIcon>client.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="10.0.0" />
+    <!-- Local (SAM) account management: create/reset/enable/disable local users. -->
+    <PackageReference Include="System.DirectoryServices.AccountManagement" Version="10.0.0" />
+    <!-- Hardware inventory (CPU/RAM/disk/OS) via WMI for the inventory export feature. -->
+    <PackageReference Include="System.Management" Version="10.0.0" />
+    <!-- `dynamic` WScript.Shell COM automation, used to resolve Startup-folder .lnk shortcut targets (AutorunHandler). -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="ClassroomClient.Tests" />
+    <ProjectReference Include="..\Shared\ClassroomManager.Shared.csproj" />
+    <!-- The same icon again as a resource, so the tray icon can pick the frame that fits the taskbar's size. -->
+    <EmbeddedResource Include="client.ico" LogicalName="client.ico" />
+    <EmbeddedResource Include="UpdateRecovery.ps1" LogicalName="ClassroomClient.UpdateRecovery.ps1" />
+    <RuntimeHostConfigurationOption Include="System.GC.ConserveMemory" Value="5" />
+  </ItemGroup>
+
+</Project>

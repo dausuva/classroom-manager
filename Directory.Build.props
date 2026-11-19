@@ -1,0 +1,81 @@
+<Project>
+
+  <Import Project="$(MSBuildThisFileDirectory)ClassroomModules.props" />
+
+  <!--
+    Applies to every project under this folder (Shared, ClassroomClient,
+    ClassroomHost) without repeating settings in each .csproj.
+  -->
+
+  <PropertyGroup>
+    <!-- The .NET version of every project except the .NET Framework screen saver. Change it here,
+         and in the runtime block of deploy\ClassroomSetup.psm1 for setup's runtime check, to move
+         the whole product. -->
+    <!-- True only for the official builds (the release scripts pass -p:ClassroomOfficial=true); a build from the source is the free line with no computer limit. -->
+    <ClassroomOfficial Condition="'$(ClassroomOfficial)' == ''">false</ClassroomOfficial>
+    <ClassroomNetVersion>10.0</ClassroomNetVersion>
+    <ClassroomTargetFramework>net$(ClassroomNetVersion)</ClassroomTargetFramework>
+    <ClassroomWindowsTargetFramework>net$(ClassroomNetVersion)-windows</ClassroomWindowsTargetFramework>
+
+    <!-- The language version is pinned so that moving to a newer .NET does not silently change how
+         existing code compiles (newer C# versions alter some overload resolution). Raise it on purpose. -->
+    <LangVersion>12</LangVersion>
+
+    <!-- Only matters for builds that use the .NET runtime installed on the PC: if the exact major
+         version is missing but a newer one is present, run on that instead of refusing to start. -->
+    <RollForward>Major</RollForward>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- The .NET security analyzers (CA2xxx, CA3xxx, CA5xxx: injection, weak cryptography, unsafe deserialization, certificate checks) run as warnings,
+         and a warning fails the build (CI also passes -warnaserror). A rule that does not fit gets a suppression with its reason next to the code. -->
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AnalysisModeSecurity>All</AnalysisModeSecurity>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+
+    <!-- Each project records the exact packages and hashes it restored (packages.lock.json, committed). CI restores in locked mode, so a package that
+         changes without a reviewed change to the lock file fails the build. -->
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <!-- The two runtimes the programs are published for (deploy\Publish-*.ps1). Declared here so the lock files already hold both and a publish never rewrites them. -->
+    <RuntimeIdentifiers>win-x64;win-x86</RuntimeIdentifiers>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Every native call in this code base goes to a Windows system DLL (user32, kernel32, advapi32, ...): load them from System32 only, never from the program's
+         or the current folder (CA5392; a DLL planted beside the program is not picked up). -->
+    <AssemblyAttribute Include="System.Runtime.InteropServices.DefaultDllImportSearchPathsAttribute">
+      <_Parameter1>System.Runtime.InteropServices.DllImportSearchPath.System32</_Parameter1>
+      <_Parameter1_IsLiteral>true</_Parameter1_IsLiteral>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <PropertyGroup>
+    <!-- Canonical publisher/product metadata baked into every DLL/EXE's
+         Win32 version resource (Explorer > Properties > Details). -->
+    <Company>Dausuva Labs</Company>
+    <Product>Classroom Manager</Product>
+    <Authors>Dausuva Labs</Authors>
+    <Copyright>Copyright © $([System.DateTime]::Now.Year) Dausuva Labs</Copyright>
+    <RepositoryUrl>https://github.com/dausuva/classroom-manager</RepositoryUrl>
+    <PackageProjectUrl>https://dausuva.com/school/</PackageProjectUrl>
+    <NeutralLanguage>en</NeutralLanguage>
+
+    <!-- Bump these together when you cut a release (Version drives both
+         AssemblyVersion and FileVersion unless overridden below). -->
+    <Version>1.2.1</Version>
+    <AssemblyVersion>1.2.1.0</AssemblyVersion>
+    <FileVersion>1.2.1.0</FileVersion>
+
+    <!-- Fewer files / smaller publish output
+         SatelliteResourceLanguages: NuGet packages (e.g.
+         Microsoft.Extensions.*) ship a translated .resources.dll per
+         language by default (cs, de, es, fr, ... - a dozen+ subfolders).
+         Keeping only "en" removes all of them; only exception-message
+         localization is lost.
+         DebugType=embedded: folds the .pdb into the .dll/.exe instead of
+         shipping it as a separate file (stack traces still resolve). -->
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+</Project>

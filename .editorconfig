@@ -1,0 +1,41 @@
+# Editor and analyzer settings for everyone who works on this code. Style rules here match how the code is already written;
+# only the rules listed under "Analyzers" change what the build accepts.
+root = true
+
+[*]
+charset = utf-8
+indent_style = space
+trim_trailing_whitespace = true
+
+[*.{cs,ps1,psm1,psd1,py}]
+indent_size = 4
+
+[*.{json,yml,yaml,props,targets,csproj,xml,xaml,html,css}]
+indent_size = 2
+
+[*.md]
+trim_trailing_whitespace = false
+
+[*.cs]
+csharp_style_namespace_declarations = file_scoped:suggestion
+csharp_using_directive_placement = outside_namespace:suggestion
+dotnet_style_qualification_for_field = false:suggestion
+dotnet_sort_system_directives_first = true
+
+# ---- Analyzers ---------------------------------------------------------------------------------------------------------
+# Directory.Build.props runs the .NET security analyzers as warnings and fails the build on any warning. A rule is switched off
+# only here, with the reason, so that the exceptions are in one place and visible in review.
+
+# Tests build deliberately hostile and random input (a certificate callback that accepts anything, a seeded Random to corrupt
+# frames, invalid protocols): the security rules describe production code, not the tests that attack it.
+[tests/**.cs]
+# CA5359 certificate callback that accepts everything, CA5394 System.Random, CA5397/CA5398 fixed SslProtocols.
+dotnet_diagnostic.CA5359.severity = none
+dotnet_diagnostic.CA5394.severity = none
+dotnet_diagnostic.CA5397.severity = none
+dotnet_diagnostic.CA5398.severity = none
+
+[src/**.cs]
+# CA5398 "avoid hardcoding SslProtocols": the protocol set is the product's decision, TLS 1.2 and 1.3 only, in one place
+# (src/Shared/TlsProfile.cs, tested in TlsProfileTests). Letting the operating system choose would accept whatever an old PC offers.
+dotnet_diagnostic.CA5398.severity = none

@@ -1,0 +1,267 @@
+# Classroom Manager translation file (gettext PO).
+# msgid is the English text and must not be changed; msgstr is its translation.
+# Keep every {0}, {1}... of the English text in the translation; they stand for a number or a name.
+# An underscore marks the keyboard shortcut letter of a button (Alt+letter); put it before a letter of your choice or leave it out.
+msgid ""
+msgstr ""
+"Language: \n"
+"Language-Name: \n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+#: ClassroomHost/ScheduleRuns.cs
+msgid "Sync the computers' time"
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "All computers"
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Room: {0}"
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Lock screen (with message)"
+msgstr ""
+
+#: ClassroomHost/MainWindow.xaml.cs
+#: ClassroomHost/QuickActions.cs
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Unlock screen"
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Show message pop-up"
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Wake up (Wake-on-LAN)"
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Sync time to this computer"
+msgstr ""
+
+#: ClassroomHost/CustomQuickAction.cs
+#: ClassroomHost/MainWindow.xaml.cs
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Shut down"
+msgstr ""
+
+#: ClassroomHost/CustomQuickAction.cs
+#: ClassroomHost/MainWindow.xaml.cs
+#: ClassroomHost/PowerDelays.cs
+msgid "Restart"
+msgstr ""
+
+#: ClassroomHost/CustomQuickAction.cs
+#: ClassroomHost/MainWindow.xaml.cs
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Sleep"
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Run command (cmd, elevated)"
+msgstr ""
+
+#: ClassroomHost/HostSettings.cs
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Mon"
+msgstr ""
+
+#: ClassroomHost/HostSettings.cs
+#: ClassroomHost/ScheduleRuns.cs
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Tue"
+msgstr ""
+
+#: ClassroomHost/HostSettings.cs
+#: ClassroomHost/ScheduleRuns.cs
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Wed"
+msgstr ""
+
+#: ClassroomHost/HostSettings.cs
+#: ClassroomHost/ScheduleRuns.cs
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Thu"
+msgstr ""
+
+#: ClassroomHost/HostSettings.cs
+#: ClassroomHost/ScheduleRuns.cs
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Fri"
+msgstr ""
+
+#: ClassroomHost/ScheduleRuns.cs
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Sat"
+msgstr ""
+
+#: ClassroomHost/ScheduleRuns.cs
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Sun"
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Scheduled actions"
+msgstr ""
+
+#: ClassroomHost/MainWindow.xaml.cs
+#: ClassroomHost/SchedulesWindow.cs
+msgid "On"
+msgstr ""
+
+#: ClassroomHost/AccountsWindow.cs
+#: ClassroomHost/AutorunsWindow.cs
+#: ClassroomHost/BulkFileManagerWindow.cs
+msgid "Name"
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Time"
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Days"
+msgstr ""
+
+#: ClassroomHost/BulkWindowsUpdateWindow.cs
+#: ClassroomHost/CustomQuickActionsWindow.cs
+#: ClassroomHost/MainWindow.xaml.cs
+msgid "Action"
+msgstr ""
+
+#: ClassroomHost/MainWindow.xaml
+#: ClassroomHost/SchedulesWindow.cs
+#: ClassroomHost/UiTranslator.cs
+msgid "Target"
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Latest run"
+msgstr ""
+
+#: ClassroomHost/MainWindow.xaml
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Progress"
+msgstr ""
+
+#: ClassroomHost/FavoriteCommandsWindow.cs
+#: ClassroomHost/LabKeysWindow.cs
+#: ClassroomHost/SchedulesWindow.cs
+msgid "_Add..."
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "_Enable / disable"
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "_Delete"
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Schedules run once a day at the chosen time while this Host is open, and also while it is closed when Host settings say so (a time missed by up to 10 minutes still runs). Times are this computer's local time. \"Sync the computers' time\" is a sample: enable it to set every computer's clock to this PC's each day."
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Ran on {0}"
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "{0} of {1} computer(s) since {2}"
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "; {0} outcome(s) unknown: review before retrying"
+msgstr ""
+
+#: ClassroomHost/MainWindow.xaml.cs
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Selected computers ({0})"
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Room: "
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "New scheduled action"
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Morning lock"
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Time (HH:mm, 24-hour)"
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Applies to"
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Title (lock / message)"
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Notice"
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Message text, or command line for \"Run command\""
+msgstr ""
+
+#: ClassroomHost/HostCli.cs
+#: ClassroomHost/HostSettings.cs
+#: ClassroomHost/MainWindow.xaml.cs
+msgid "Please look at the teacher."
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Monthly: only the first of the ticked weekdays in each month"
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Catch up: computers that are off at that time get it as soon as they are online, until the next time (not for lock, message, wake or power)"
+msgstr ""
+
+#: ClassroomHost/FavoriteCommandsWindow.cs
+#: ClassroomHost/KeyboardLayoutsWindow.cs
+#: ClassroomHost/LabKeysWindow.cs
+msgid "Add"
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Enter the time as HH:mm, for example 08:30."
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Schedule"
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Lock, message, wake and power do not catch up: hours late they would surprise a class. Untick Catch up for this action."
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Pick at least one day."
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "Select computers in the main window first, or pick a room."
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "on"
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "off"
+msgstr ""
+
+#: ClassroomHost/SchedulesWindow.cs
+msgid "1st "
+msgstr ""

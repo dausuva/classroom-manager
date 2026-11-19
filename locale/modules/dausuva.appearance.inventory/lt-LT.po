@@ -1,0 +1,56 @@
+# Classroom Manager Appearance translation (gettext PO).
+# Migrated translations retain the wording from locale/lt-LT.po; new inventory-choice/usage keys are explicit typed presentation.
+# Source: src/ClassroomHost/AppearanceMessages.cs
+msgid ""
+msgstr ""
+"Language: lt-LT\n"
+"Language-Name: Lietuvių\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgid "None — turn the screen saver off"
+msgstr "Nėra — išjungti ekrano užsklandą"
+
+msgid "Install a .scr file from this computer"
+msgstr "Įdiegti .scr failą iš šio kompiuterio"
+
+msgid "Restore each user's previous screen saver"
+msgstr "Atkurti kiekvieno naudotojo ankstesnę ekrano užsklandą"
+
+msgid "Reading screen saver settings from {0} computer(s)..."
+msgstr "Skaitomi ekrano užsklandos nustatymai iš {0} kompiuterio(-ių)..."
+
+msgid "{0} — already on every selected computer that answered"
+msgstr "{0} — jau yra visuose atsakiusiuose pasirinktuose kompiuteriuose"
+
+msgid "No selected computer reported its screen saver settings. A user must be signed in for this action."
+msgstr "Nė vienas pasirinktas kompiuteris nepranešė ekrano užsklandos nustatymų. Šiam veiksmui turi būti prisijungęs naudotojas."
+
+msgid "Current setting on {0} of {1} selected computer(s): {2}."
+msgstr "Dabartinis nustatymas {0} pasirinktame(-uose) kompiuteryje(-iuose) iš {1}: {2}."
+
+msgid "A Group Policy controls the screen saver on {0} computer(s); the change will be refused there."
+msgstr "Ekrano užsklandą {0} kompiuteryje(-iuose) valdo grupės strategija; ten pakeitimas bus atmestas."
+
+msgid "Unavailable:\n"
+msgstr "Nepasiekiami:\n"
+
+msgid "_Screen saver"
+msgstr "_Ekrano užsklanda"
+
+msgid "Screen saver _file (only for “Install a .scr file”)"
+msgstr "Ekrano užsklandos _failas (tik parinkčiai „Įdiegti .scr failą“)"
+
+msgid "Start after this many idle _minutes"
+msgstr "Paleisti po tiek neveiklumo _minučių"
+
+msgid "On resume, show the sign-in screen"
+msgstr "Grįžtant rodyti prisijungimo ekraną"
+
+msgid "While plugged in, turn the screen _off after the screen saver has run this many minutes (0 = never, empty = leave Windows' setting)"
+msgstr "Kai įjungtas į elektros tinklą, ekraną _išjungti praėjus tiek minučių nuo ekrano užsklandos paleidimo (0 = niekada, tuščia = palikti „Windows“ nustatymą)"
+
+msgid "{0} on {1}"
+msgstr "{0}: {1}"
+
+msgid "off"
+msgstr "išjungta"

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="lt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Classroom Manager – mokytojo vadovas</title>
+<link rel="stylesheet" href="guide.css">
+</head>
+<body>
+<header>
+  <h1>Classroom Manager – mokytojo vadovas</h1>
+  <p class="lead">Tai, ko reikia pamokai, ta tvarka, kuria su tuo susidursite. Norėdami vėl atverti šį puslapį, programoje „Classroom Manager“ paspauskite <kbd>F1</kbd>.</p>
+  <nav>
+    <a href="#start">Pradžia</a>
+    <a href="#window">Pagrindinis langas</a>
+    <a href="#lesson">Pamokos metu</a>
+    <a href="#files">Failai</a>
+    <a href="#restrict">Apribojimai ir egzaminai</a>
+    <a href="#results">Rezultatai ir žurnalas</a>
+    <a href="#settings">Nustatymai</a>
+    <a href="#trouble">Kai kas nors neveikia</a>
+  </nav>
+</header>
+
+<section id="start">
+  <h2>Pradžia</h2>
+  <ol>
+    <li><strong>Gaukite raktą.</strong> Administratorius jums duoda failą (<em>teacher-settings.json</em>) arba raktą, kurį reikia įvesti. Pirmą kartą paleista programa pasiūlo abu būdus; vėliau juos rasite per <strong>Nustatymai &gt; Importuoti mokytojo nustatymus...</strong> ir <strong>Nustatymai &gt; Programos nustatymai...</strong></li>
+    <li><strong>Raskite kompiuterius.</strong> Nustatymų faile jie jau yra. Kitu atveju pasirinkite <strong>Kompiuteriai &gt; Ieškoti tinkle</strong>. Jei kompiuteris rodo <em>nepavyko prisijungti</em>, nes jo sertifikatas dar nepatvirtintas, pažymėkite jį ir pasirinkite <strong>Patvirtinti sertifikatą...</strong>: programa parodo kompiuterio pateikiamą sertifikatą, ar jis naujas, ar pasikeitęs, ir klausia <strong>Patikėti ir prisijungti</strong>. Pirmiausia palyginkite kontrolinį kodą su rodomu Classroom Client Health tame kompiuteryje.</li>
+    <li><strong>Priskirkite juos klasei.</strong> Pažymėkite kompiuterius ir pasirinkite <strong>Priskirti klasei...</strong>. Kas 30 sekundžių tikrinami tik klasei priskirti kompiuteriai.</li>
+  </ol>
+  <p class="note">Mokytojo raktu vedamos pamokos: ekrano užrakinimas, žinutės, failai, svetainės, darbalaukio fonas, blokavimo sąrašai, egzamino režimas ir maitinimas. Programinei įrangai diegti ir kompiuterių sąrankai keisti reikia administratoriaus rakto; su mokytojo raktu tokie mygtukai atsako, kad kompiuteris veiksmą atmetė.</p>
+</section>
+
+<section id="window">
+  <h2>Pagrindinis langas</h2>
+  <img src="img/lt/main-01-overview.png" alt="Pagrindinis langas su kortele „Apžvalga“ ir šešiais kompiuteriais">
+  <ul>
+    <li><strong>Kortelės viršuje</strong> grupuoja veiksmus: „Apžvalga“ rodo pasirinktus sparčiuosius veiksmus, o kitose kortelėse komandos grupuojamos pagal užduotį.</li>
+    <li><strong>Sąraše</strong> matomas kiekvienas kompiuteris, prisijungęs naudotojas ir būsena. Žalias taškas – prisijungęs, gintarinis – reikia dėmesio, pilkas – neprisijungęs.</li>
+    <li><strong>Pirmiausia pažymėkite kompiuterius, tada rinkitės veiksmą.</strong> Pilka juosta virš sąrašo visada parodo, kuriuos kompiuterius pasieks kitas veiksmas. <strong>Visi</strong>, <strong>Nė vieno</strong>, <strong>Apversti</strong>, <strong>Prisijungę</strong> ir <strong>Neprisijungę</strong> pažymi juos už jus (jie veikia sąraše matomus kompiuterius); <kbd>Ctrl</kbd>+<kbd>A</kbd> pažymi visus, <kbd>Esc</kbd> – nė vieno.</li>
+    <li><strong>Spartieji veiksmai</strong> kortelėje „Apžvalga“ pasirenkami sąsajos nustatymuose. Juostos skiltyje <strong>Veiksmai</strong> rodomi jūsų sukurti mygtukai; tuščia skiltis paslepiama. Daugiau veiksmų rikiuojami abėcėlės tvarka, o viršutines eilutes galima keisti lange „Išdėstyti įrankių juostą“.</li>
+    <li><strong>Kompiuteriai / Operacijos / Žurnalas</strong> perjungia, kas rodoma apatinėje dalyje.</li>
+  </ul>
+</section>
+
+<section id="lesson">
+  <h2>Pamokos metu</h2>
+  <div class="pair">
+    <figure><img src="img/lt/classroom-lock-screen.png" alt="Dialogas „Užrakinti ekranus“"><figcaption>Užrakinti ekraną...</figcaption></figure>
+    <figure><img src="img/lt/classroom-message.png" alt="Dialogas „Siųsti žinutę“"><figcaption>Žinutė...</figcaption></figure>
+  </div>
+  <ul>
+    <li><strong>Užrakinti ekraną...</strong> uždengia visus monitorius jūsų tekstu, kol paspausite <strong>Atrakinti</strong>.</li>
+    <li><strong>Žinutė...</strong> parodo pranešimą virš to, ką mokinys daro; ji gali pati užsiverti po nurodyto sekundžių skaičiaus.</li>
+    <li><strong>Atverti svetainę...</strong> ir <strong>Atverti programą...</strong> (kortelė „Programinė įranga“) visiems atveria tą patį puslapį ar programą. <strong>Atverti svetainę...</strong> leidžia pasirinkti ir naršyklę bei tai, ar langas atsidarys išskleistas (pagal nutylėjimą taip); kompiuteryje, kuriame tos naršyklės nėra, naudojama numatytoji naršyklė, o kompiuteryje su senesniu klientu puslapis atveriamas numatytojoje naršyklėje kaip ir anksčiau.</li>
+    <li><strong>Nustatyti foną...</strong> (kortelė „Klasė“) mokinių darbalaukiuose nustato paveikslėlį arba vientisą spalvą.</li>
+    <li><strong>Pažadinti</strong> (kortelė „Kompiuteriai“) įjungia tai palaikančius kompiuterius, o jau įjungtuose pažadina ekraną.</li>
+    <li><strong>Maitinimas...</strong> (kortelė „Klasė“) pamokos pabaigoje išjungia, paleidžia iš naujo arba atjungia naudotoją. Mokiniai prieš tai įspėjami.</li>
+  </ul>
+</section>
+
+<section id="files">
+  <h2>Failai</h2>
+  <img src="img/lt/files-collect-files.png" alt="Dialogas „Surinkti failus“">
+  <ul>
+    <li><strong>Siųsti failus...</strong> įdeda failus į kiekvieno mokinio darbalaukį, dokumentus arba atsisiuntimus.</li>
+    <li><strong>Surinkti failus...</strong> nukopijuoja mokinių darbus į jūsų kompiuterį – kiekvienam mokiniui atskiras aplankas. Originalai lieka savo vietoje.</li>
+    <li><strong>Naujausi failai...</strong> parodo, ką mokiniai neseniai pakeitė (per paskutines 30 minučių, jei nepasirinksite kito laiko) darbalaukyje ir dokumentuose, pagal tipą: dokumentai, paveikslėliai, programinis kodas ir aplankai. Pasirinktus arba visus failus nukopijuokite į savo kompiuterį; naujesnė versija pakeičia ankstesnę kopiją. <strong>Stebimi aplankai...</strong> nustato kitus kompiuterio aplankus, o kopijos ištrinamos po jūsų pasirinkto dienų skaičiaus.</li>
+    <li><strong>Perdavimo istorija...</strong> parodo, ką išsiuntėte, ir leidžia atsiimti nepakeistą failą.</li>
+  </ul>
+</section>
+
+<section id="restrict">
+  <h2>Apribojimai ir egzaminai</h2>
+  <div class="pair">
+    <figure><img src="img/lt/restrictions-websites-in-use.png" alt="Dialogas „Naudojamos svetainės“"><figcaption>Naudojamos svetainės...</figcaption></figure>
+    <figure><img src="img/lt/restrictions-exam-mode-settings.png" alt="Dialogas „Egzamino režimo nustatymai“"><figcaption>Egzamino režimo nustatymai...</figcaption></figure>
+  </div>
+  <ul>
+    <li><strong>Naudojamos svetainės...</strong> parodo, kurios svetainės atvertos šiuo metu; pažymėkite tas, kurias reikia blokuoti.</li>
+    <li><strong>Blokuoti svetaines...</strong> ir <strong>Blokuoti programas...</strong> kiekviename kompiuteryje laiko sąrašą, kol jį pakeisite.</li>
+    <li><strong>Egzamino režimas</strong> prideda laikiną blokuojamų svetainių ir programų rinkinį, taip pat gali nutildyti garsą, išjungti kameras ir blokuoti USB atmintines bei telefonus. Jį išjungus pašalinama tik tai, ką pridėjo egzaminas.</li>
+  </ul>
+  <p class="note">Svetainės blokavimas sustabdo pavadinimą, o ne internetą: mokinys, turintis VPN, vis tiek gali tai apeiti. Laikykite tai atgrasymo priemone.</p>
+</section>
+
+<section id="results">
+  <h2>Rezultatai ir žurnalas</h2>
+  <img src="img/lt/main-view-operations.png" alt="Rodinys „Operacijos“">
+  <ul>
+    <li><strong>Operacijos</strong> parodo, ką pradėjote ir kuo tai baigėsi kiekviename kompiuteryje. <strong>Atverti rezultatus</strong> (arba dvigubas spustelėjimas) parodo kompiuterius po vieną; <strong>Kartoti nepavykusius</strong> pakartoja veiksmą tik ten, kur jis nepavyko. <strong>Anuliuoti</strong> atšaukia veiksmą ten, kur jis pavyko: atrakina po užrakinimo, paslepia pranešimą, atšaukia dar laukiantį išjungimą, grąžina ankstesnį darbalaukio foną ar ekrano užsklandą. Jei veiksmo atšaukti negalima, mygtukas lieka pilkas.</li>
+    <li><strong>Žurnalas</strong> – tas pats pagal laiką. Jis taip pat saugomas kaip failas kiekvienai dienai; <strong>Atverti žurnalų aplanką</strong> juos parodo.</li>
+  </ul>
+</section>
+
+<section id="settings">
+  <h2>Nustatymai</h2>
+  <img src="img/lt/main-08-settings.png" alt="Kortelė „Nustatymai“">
+  <ul>
+    <li><strong>Režimas: mokytojas / administratorius</strong> sutrumpina arba pailgina įrankių juostas. Tai nekeičia to, ką leidžia jūsų raktas.</li>
+    <li><strong>Sąsajos nustatymai...</strong> – kalba (anglų, lietuvių arba pridėta per <strong>Kalbos...</strong>), šviesi ar tamsi išvaizda ir jūsų spartieji veiksmai.</li>
+    <li><strong>Tvarkaraščiai...</strong> nustatytu laiku užrakina, parodo pranešimą, pažadina, sinchronizuoja laiką, išjungia ir atlieka kitus veiksmus visuose kompiuteriuose, klasėje arba pasirinktuose. Kiekviename Host yra paruoštas, bet išjungtas <em>Kompiuterių laiko sinchronizavimas</em>; įjunkite jį, kad laikrodžiai būtų nustatomi kasryt. Pažymėjus <em>Pasivyti</em> (laiko sinchronizavimui ir komandai), tuo metu išjungtas kompiuteris jį gauna, kai tik prisijungia. Tvarkaraščiai vykdomi, kol Host atidarytas; pažymėkite <em>Vykdyti tvarkaraščius ir tada, kai Host uždarytas</em> lange <strong>Host nustatymai...</strong>, ir Windows juos vykdys be lango, kol esate prisijungę.</li>
+    <li><strong>Nustatymų atsarginės kopijos...</strong> atkuria ankstesnę jūsų nustatymų kopiją. <strong>Eksportuoti konfigūraciją...</strong> išsaugo viską, įskaitant raktus, viename slaptažodžiu apsaugotame faile, kurį verta laikyti kitur.</li>
+    <li><strong>Apsaugoti laboratoriją...</strong> (skiltyje <em>Daugiau administravimo ir pagalbos veiksmų</em>) paklausia kompiuterių ir išvardija, kas silpnesnė, nei turėtų būti: nepatvirtinti sertifikatai, kompiuteriai, vis dar turintys patį laboratorijos raktą, seni kliento variantai, senas aptikimo atsakymas, raktas, senesnis nei metai, nepavykę rankos paspaudimai. Raudona — problema, geltona — silpnoji vieta; paskutiniame stulpelyje nurodyta komanda, kuri ją ištaiso. Tik žiūri. Administratorius tą pačią ataskaitą gali išspausdinti komanda <em>ClassroomCli security</em>.</li>
+  </ul>
+</section>
+
+<section id="trouble">
+  <h2>Kai kas nors neveikia</h2>
+  <table>
+    <tr><th>Kas rašoma sąraše</th><th>Ką tai reiškia</th><th>Ką daryti</th></tr>
+    <tr><td>Neprisijungęs (neatsako)</td><td>Kompiuteris išjungtas, užmigęs arba kitame tinkle.</td><td>Naudokite <strong>Pažadinti</strong> arba įjunkite jį.</td></tr>
+    <tr><td>Neteisingas bendras raktas</td><td>Kompiuteris nepriima jūsų rakto.</td><td>Paprašykite administratoriaus šios klasės rakto.</td></tr>
+    <tr><td>Prisijungęs – niekas neprisijungęs prie „Windows“</td><td>Kompiuteris įjungtas, bet joks mokinys neprisijungė.</td><td>Mokiniui skirti veiksmai (užraktas, žinutė, failai) laukia, kol kas nors prisijungs.</td></tr>
+    <tr><td>Kompiuteris įjungtas, tačiau klientas nepasiekiamas</td><td>„Classroom Client“ tame kompiuteryje sustabdytas arba jį blokuoja užkarda.</td><td>Tame kompiuteryje paleiskite <em>Client-Health</em> iš diegimo rinkinio – jis pasakys, kas trukdo.</td></tr>
+    <tr><td>Veiksmas atsako „reikia administratoriaus rakto“</td><td>Jūsų raktas yra mokytojo raktas.</td><td>Paprašykite administratoriaus tai atlikti arba duoti administratoriaus raktą.</td></tr>
+  </table>
+  <p>Naudokite <strong>Atsiliepimas</strong> (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd>), kad aprašytumėte problemą tame ekrane, kuriame ji įvyko.</p>
+</section>
+
+<footer>Paveikslėliuose – įsivaizduojama šešių kompiuterių klasė. Visi programos langai pavaizduoti projekto faile <em>docs/help/screenshots.md</em>.</footer>
+</body>
+</html>

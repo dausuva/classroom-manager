@@ -1,0 +1,45 @@
+# Classroom Manager translation file (gettext PO).
+# msgid is the English text and must not be changed; msgstr is its translation.
+# Keep every {0}, {1}... of the English text in the translation; they stand for a number or a name.
+# An underscore marks the keyboard shortcut letter of a button (Alt+letter); put it before a letter of your choice or leave it out.
+msgid ""
+msgstr ""
+"Language: lt-LT\n"
+"Language-Name: Lietuvių\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+#: ClassroomHost/WindowsMaintenanceInventory.cs
+msgid "Unnamed update"
+msgstr "Naujinimas be pavadinimo"
+
+#: ClassroomHost/WindowsMaintenanceInventory.cs
+msgid "new Windows version"
+msgstr "nauja „Windows“ versija"
+
+#: ClassroomHost/WindowsMaintenanceInventory.cs
+msgid "restart may be required"
+msgstr "gali reikėti paleisti iš naujo"
+
+#: ClassroomHost/BulkWindowsUpdateWindow.cs
+msgid "Paused until {0}"
+msgstr "Pristabdyta iki {0}"
+
+#: ClassroomHost/BulkWindowsUpdateWindow.cs
+msgid "Paused"
+msgstr "Pristabdyta"
+
+#: ClassroomHost/BulkWindowsUpdateWindow.cs
+msgid "Running normally"
+msgstr "Veikia įprastai"
+
+#: ClassroomHost/MaintenancePresentation.cs
+msgid "{0} MB"
+msgstr "{0} MB"
+
+#: ClassroomHost/MaintenancePresentation.cs
+msgid "optional/driver"
+msgstr "pasirinktinis / tvarkyklė"
+
+#: ClassroomHost/MaintenancePresentation.cs
+msgid " · checked {0}"
+msgstr " · patikrinta {0}"

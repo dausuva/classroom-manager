@@ -1,0 +1,54 @@
+# Appearance presentation catalog. English message keys; keep numbered arguments and accelerator markers.
+# Source: src/ClassroomHost/AppearanceMessages.cs
+msgid ""
+msgstr ""
+"Language: \n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgid "None — turn the screen saver off"
+msgstr ""
+
+msgid "Install a .scr file from this computer"
+msgstr ""
+
+msgid "Restore each user's previous screen saver"
+msgstr ""
+
+msgid "Reading screen saver settings from {0} computer(s)..."
+msgstr ""
+
+msgid "{0} — already on every selected computer that answered"
+msgstr ""
+
+msgid "No selected computer reported its screen saver settings. A user must be signed in for this action."
+msgstr ""
+
+msgid "Current setting on {0} of {1} selected computer(s): {2}."
+msgstr ""
+
+msgid "A Group Policy controls the screen saver on {0} computer(s); the change will be refused there."
+msgstr ""
+
+msgid "Unavailable:\n"
+msgstr ""
+
+msgid "_Screen saver"
+msgstr ""
+
+msgid "Screen saver _file (only for “Install a .scr file”)"
+msgstr ""
+
+msgid "Start after this many idle _minutes"
+msgstr ""
+
+msgid "On resume, show the sign-in screen"
+msgstr ""
+
+msgid "While plugged in, turn the screen _off after the screen saver has run this many minutes (0 = never, empty = leave Windows' setting)"
+msgstr ""
+
+msgid "{0} on {1}"
+msgstr ""
+
+msgid "off"
+msgstr ""

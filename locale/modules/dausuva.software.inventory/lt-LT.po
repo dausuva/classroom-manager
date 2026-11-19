@@ -1,0 +1,58 @@
+# Classroom Manager translation file (gettext PO).
+# msgid is the English text and must not be changed; msgstr is its translation.
+# Keep every {0}, {1}... of the English text in the translation; they stand for a number or a name.
+# An underscore marks the keyboard shortcut letter of a button (Alt+letter); put it before a letter of your choice or leave it out.
+msgid ""
+msgstr ""
+"Language: lt-LT\n"
+"Language-Name: Lietuvių\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+#: ClassroomHost/BulkProgramsWindow.cs
+msgid "All programs"
+msgstr "Visos programos"
+
+#: ClassroomHost/BulkProcessesWindow.cs
+#: ClassroomHost/BulkProgramsWindow.cs
+msgid "Differences only"
+msgstr "Tik skirtumai"
+
+#: ClassroomHost/BulkProcessesWindow.cs
+#: ClassroomHost/BulkProgramsWindow.cs
+msgid "Version differences"
+msgstr "Versijų skirtumai"
+
+#: ClassroomHost/BulkProgramsWindow.cs
+msgid "Missing on some PCs"
+msgstr "Kai kuriuose kompiuteriuose nėra"
+
+#: ClassroomHost/ProcessInventoryComparison.cs
+#: ClassroomHost/ProgramInventoryComparison.cs
+msgid "Versions differ"
+msgstr "Skiriasi versijos"
+
+#: ClassroomHost/SoftwareInventoryPresentation.cs
+msgid "Missing on {0} checked PC(s)"
+msgstr "Trūksta {0} patikrintame(-uose) kompiuteryje(-iuose)"
+
+#: ClassroomHost/AccountInventoryComparison.cs
+#: ClassroomHost/ProcessInventoryComparison.cs
+#: ClassroomHost/ProgramInventoryComparison.cs
+msgid "{0} unavailable"
+msgstr "nepasiekiama: {0}"
+
+#: ClassroomHost/ProgramInventoryComparison.cs
+msgid "Same version on all checked PCs"
+msgstr "Ta pati versija visuose patikrintuose kompiuteriuose"
+
+#: ClassroomHost/SoftwareInventoryPresentation.cs
+msgid "unknown"
+msgstr "nežinoma"
+
+#: ClassroomHost/SoftwareInventoryPresentation.cs
+msgid "(unknown)"
+msgstr "(nežinoma)"
+
+#: ClassroomHost/SoftwareInventoryPresentation.cs
+msgid "{0} / {1} checked"
+msgstr "{0} / {1} patikrintų"

@@ -1,0 +1,119 @@
+<Project Sdk="Microsoft.NET.Sdk" TreatAsLocalProperty="SelfContained;DesktopBridgeSelfContained">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>$(ClassroomWindowsTargetFramework)</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>ClassroomManager.Host</RootNamespace>
+    <AssemblyName>ClassroomHost</AssemblyName>
+
+    <!-- Shown as "File description" in Explorer > Properties > Details -->
+    <AssemblyTitle>Classroom Manager</AssemblyTitle>
+    <Description>Dausuva teacher console for managing and monitoring classroom PCs.</Description>
+
+    <!-- Publish as one .exe instead of dozens of files (see deploy\Publish-Host.ps1).
+         Only takes effect for a self-contained, RID-specific `dotnet publish`;
+         plain `dotnet build` / non-RID publish ignore these. -->
+    <PublishSingleFile>true</PublishSingleFile>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+
+    <!-- WPF is interactive and mostly idle; workstation GC keeps per-process overhead smaller. -->
+    <ServerGarbageCollection>false</ServerGarbageCollection>
+    <ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>
+    <RetainVMGarbageCollection>false</RetainVMGarbageCollection>
+
+    <!-- Explorer icon for ClassroomHost.exe/.dll; also used as the window/taskbar
+         icon via the <Resource> below + Icon="host.ico" on MainWindow.xaml. -->
+    <ApplicationIcon>host.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(EnableReportingModule)' == 'true'">
+    <DefineConstants>$(DefineConstants);REPORTING_MODULE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(EnableBrowserInventoryModule)' == 'true'">
+    <DefineConstants>$(DefineConstants);BROWSER_INVENTORY_MODULE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(EnableBrowserInventoryModule)' == 'true'">
+    <ProjectReference Include="..\Modules\BrowserInventory\ClassroomManager.BrowserInventory.csproj" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(EnableBrowserInventoryModule)' != 'true'">
+    <Compile Remove="BrowserInventoryLoader.cs;BrowserInventorySummary.cs;ClientBrowserInventoryConnection.cs" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(EnableReportingModule)' == 'true'">
+    <ProjectReference Include="..\Modules\Reporting\ClassroomManager.Reporting.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <AssemblyMetadata Include="ClassroomOfficial" Value="$(ClassroomOfficial)" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(EnableReportingModule)' != 'true'">
+    <Compile Remove="InventoryReportData.cs;InventoryReportExport.cs" />
+  </ItemGroup>
+
+  <!-- MSIX only (scripts\build-msix.ps1 -RuntimeMode SharedRuntime). Visual Studio's packaging targets
+       force the app to be published with .NET inside; these two properties are declared local above so
+       that this one case can turn it off. Ordinary builds and publishes never set ClassroomRuntimeMode. -->
+  <PropertyGroup Condition="'$(ClassroomRuntimeMode)' == 'SharedRuntime'">
+    <SelfContained>false</SelfContained>
+    <DesktopBridgeSelfContained>false</DesktopBridgeSelfContained>
+    <!-- Compressing the single file is only possible when the runtime is inside it. -->
+    <EnableCompressionInSingleFile>false</EnableCompressionInSingleFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Resource Include="host.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Launcher for the Host's command-line mode (App.CliSwitch in App.xaml.cs, commands in HostCli.cs).
+         It must stay a loose file beside the single-file executable so scripts can call it by name.
+         Left out of the MSIX package (the packaging project sets ClassroomPackagedApp): files inside a
+         package cannot be run by path from a script, so the launcher would be dead weight there. -->
+    <None Include="ClassroomCli.cmd" Condition="'$(ClassroomPackagedApp)' != 'true'" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- The teacher guide (HelpGuide.cs): its pages and style sheet, and the pictures it shows. The pictures
+         are taken by tests\ClassroomHost.Tests\HelpScreenshots.cs into docs\help\screenshots; name here the
+         ones the guide uses. -->
+    <EmbeddedResource Include="Help\guide-en.html;Help\guide-lt.html;Help\guide.css" LogicalName="Help/%(Filename)%(Extension)" />
+    <HelpPicture Include="main-01-overview;classroom-lock-screen;classroom-message;files-collect-files;restrictions-websites-in-use;restrictions-exam-mode-settings;main-view-operations;main-08-settings" />
+    <EmbeddedResource Include="@(HelpPicture->'..\..\docs\help\screenshots\en\%(Identity).png')" LogicalName="Help/img/en/%(Filename).png" />
+    <EmbeddedResource Include="@(HelpPicture->'..\..\docs\help\screenshots\lt\%(Identity).png')" LogicalName="Help/img/lt/%(Filename).png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\LICENSE" LogicalName="ClassroomManager.LICENSE" />
+    <ModuleCatalog Include="..\..\locale\modules\dausuva.reporting.inventory\messages.pot;..\..\locale\modules\dausuva.reporting.inventory\lt-LT.po" Domain="dausuva.reporting.inventory" Condition="'$(EnableReportingModule)' == 'true'" />
+    <ModuleCatalog Include="..\..\locale\modules\dausuva.browser.inventory\messages.pot;..\..\locale\modules\dausuva.browser.inventory\lt-LT.po" Domain="dausuva.browser.inventory" Condition="'$(EnableBrowserInventoryModule)' == 'true'" />
+    <ModuleCatalog Include="..\..\locale\modules\dausuva.automation.scheduling\messages.pot;..\..\locale\modules\dausuva.automation.scheduling\lt-LT.po" Domain="dausuva.automation.scheduling" />
+    <ModuleCatalog Include="..\..\locale\modules\dausuva.student-work.backup\messages.pot;..\..\locale\modules\dausuva.student-work.backup\lt-LT.po" Domain="dausuva.student-work.backup" />
+    <ModuleCatalog Include="..\..\locale\modules\dausuva.software.inventory\messages.pot;..\..\locale\modules\dausuva.software.inventory\lt-LT.po" Domain="dausuva.software.inventory" />
+    <ModuleCatalog Include="..\..\locale\modules\dausuva.maintenance.inventory\messages.pot;..\..\locale\modules\dausuva.maintenance.inventory\lt-LT.po" Domain="dausuva.maintenance.inventory" />
+    <ModuleCatalog Remove="..\..\locale\modules\*\lt-LT.po" Condition="'$(IncludeModuleCatalogs)' == 'false'" />
+    <EmbeddedResource Include="@(ModuleCatalog)" LogicalName="locale.modules.%(Domain).%(Filename)%(Extension)" />
+    <EmbeddedResource Include="..\..\locale\modules\dausuva.appearance.inventory\lt-LT.po" LogicalName="locale.modules.dausuva.appearance.inventory.lt-LT.po" Condition="'$(IncludeAppearanceCatalog)' != 'false'" />
+    <EmbeddedResource Include="..\..\NOTICE" LogicalName="ClassroomManager.NOTICE" />
+    <EmbeddedResource Include="THIRD-PARTY-NOTICES.txt" LogicalName="ClassroomManager.THIRD-PARTY-NOTICES" />
+    <EmbeddedResource Include="product-support.json" LogicalName="ClassroomManager.ProductSupport" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\ClassroomManager.Shared.csproj" />
+    <!-- Included during migration: disabling scheduling needs a safe unattended-job transition policy. -->
+    <ProjectReference Include="..\Modules\Automation\ClassroomManager.Automation.csproj" />
+    <!-- Preserve existing backup commands/schedules until a safe disable transition exists. -->
+    <ProjectReference Include="..\Modules\StudentWork\ClassroomManager.StudentWork.csproj" />
+    <ProjectReference Include="..\Modules\Appearance\ClassroomManager.Appearance.csproj" />
+    <ProjectReference Include="..\Modules\SoftwareInventory\ClassroomManager.SoftwareInventory.csproj" />
+    <ProjectReference Include="..\Modules\Maintenance\ClassroomManager.Maintenance.csproj" />
+    <ProjectReference Include="..\Modules\Runtime\ClassroomManager.Modules.Runtime.csproj" />
+    <RuntimeHostConfigurationOption Include="System.GC.ConserveMemory" Value="5" />
+  </ItemGroup>
+
+</Project>

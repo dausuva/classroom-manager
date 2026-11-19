@@ -1,0 +1,304 @@
+# Builds, signs and publishes a release of the free, open-source Classroom Manager when a version tag is pushed to the PUBLIC repository.
+#
+#   git tag v1.2.0 && git push origin v1.2.0        (or Actions > Release > Run workflow)
+#
+# Steps: check the tag against Directory.Build.props, build and test, publish the two programs (stage 1), have SignPath sign them, make the two installers
+# (stage 2), have SignPath sign those, create the GitHub release with the files and SHA256SUMS.txt, then (each only when switched on, see
+# docs/release/AUTOMATIC-RELEASE-GUIDE.md) write the winget manifests and open the winget pull request, and build the MSIX and send it to the Microsoft Store.
+# Nothing here runs in any other repository: every job names the public repository, so a copy in the private repository does nothing.
+# Without the SignPath secret the programs are built unsigned and the release is still the newest one (so the website's releases/latest links work) but is named "(unsigned)" and says so in its text, never presented as signed.
+# The installers are made only when the repository variable BUILD_INSTALLERS is "true": their Inno Setup scripts are not in the public source yet (the owner has to
+# decide that, see docs/REVIEW-INDEX.md item 12b). Without it a release is the two signed single-file programs and SHA256SUMS.txt.
+name: Release
+
+on:
+  push:
+    tags: ['v[0-9]+.[0-9]+.[0-9]+']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Existing tag to release, for example v1.2.0 (the workflow checks it out)'
+        required: true
+
+concurrency:
+  group: release-${{ github.event.inputs.tag || github.ref_name }}
+  cancel-in-progress: false
+
+permissions:
+  actions: read      # SignPath reads the workflow run it signs for
+  contents: read
+
+env:
+  DOTNET_NOLOGO: "true"
+  DOTNET_CLI_TELEMETRY_OPTOUT: "true"
+  RELEASE_TAG: ${{ github.event.inputs.tag || github.ref_name }}
+
+jobs:
+  verify:
+    if: github.repository == 'dausuva/classroom-manager'
+    runs-on: windows-2025
+    timeout-minutes: 45
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ env.RELEASE_TAG }}
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4
+        with:
+          global-json-file: global.json
+      - name: The tag names the version in Directory.Build.props
+        id: version
+        shell: pwsh
+        run: |
+          $version = ([xml](Get-Content Directory.Build.props -Raw)).Project.PropertyGroup.Version | Where-Object { $_ } | Select-Object -First 1
+          if ("v$version" -ne $env:RELEASE_TAG) { throw "Tag $env:RELEASE_TAG does not match Directory.Build.props version $version." }
+          "version=$version" >> $env:GITHUB_OUTPUT
+      - run: dotnet tool restore
+      - run: dotnet restore ClassroomManager.sln --locked-mode
+      - run: dotnet build ClassroomManager.sln -c Release --no-restore -warnaserror
+      - name: Test
+        shell: pwsh
+        run: |
+          $failed = $false
+          foreach ($project in @('ClassroomManager.Shared.Tests', 'ClassroomHost.Tests', 'ClassroomClient.Tests')) {
+            dotnet test "tests/$project/$project.csproj" -c Release --no-build
+            if ($LASTEXITCODE -ne 0) { $failed = $true }
+          }
+          if ($failed) { exit 1 }
+
+  binaries:
+    needs: verify
+    runs-on: windows-2025
+    timeout-minutes: 45
+    env:
+      HAS_SIGNPATH: ${{ secrets.SIGNPATH_API_TOKEN != '' }}
+    outputs:
+      signed: ${{ steps.flag.outputs.signed }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ env.RELEASE_TAG }}
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4
+        with:
+          global-json-file: global.json
+      - name: "Stage 1 - publish the programs"
+        shell: pwsh
+        env:
+          RestoreLockedMode: "true"   # the programs are built from exactly the packages recorded in the lock files
+        run: ./scripts/Build-PublicRelease.ps1 -Stage Binaries
+      - name: Upload the unsigned programs
+        id: upload-binaries
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: unsigned-binaries
+          path: artifacts/public/binaries
+      - name: Sign the programs (SignPath)
+        if: env.HAS_SIGNPATH == 'true'
+        uses: signpath/github-action-submit-signing-request@f6d04783b4569d051e0c80105fe66e82819d0092 # v3
+        with:
+          api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
+          organization-id: ${{ vars.SIGNPATH_ORGANIZATION_ID }}
+          project-slug: ${{ vars.SIGNPATH_PROJECT_SLUG }}
+          signing-policy-slug: ${{ vars.SIGNPATH_SIGNING_POLICY_SLUG }}
+          artifact-configuration-slug: binaries
+          github-artifact-id: ${{ steps.upload-binaries.outputs.artifact-id }}
+          wait-for-completion: true
+          output-artifact-directory: artifacts/public/signed-binaries
+      - name: Which programs go on
+        id: flag
+        shell: pwsh
+        run: |
+          if ($env:HAS_SIGNPATH -eq 'true') { Copy-Item artifacts/public/signed-binaries artifacts/public/next-binaries -Recurse; "signed=true" >> $env:GITHUB_OUTPUT }
+          else { Copy-Item artifacts/public/binaries artifacts/public/next-binaries -Recurse; "signed=false" >> $env:GITHUB_OUTPUT }
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: programs
+          path: artifacts/public/next-binaries
+
+  installers:
+    needs: [verify, binaries]
+    runs-on: windows-2025
+    timeout-minutes: 30
+    env:
+      HAS_SIGNPATH: ${{ secrets.SIGNPATH_API_TOKEN != '' }}
+      BUILD_INSTALLERS: ${{ vars.BUILD_INSTALLERS }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ env.RELEASE_TAG }}
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: programs
+          path: artifacts/public/next-binaries
+      - name: Inno Setup
+        if: vars.BUILD_INSTALLERS == 'true'
+        shell: pwsh
+        run: |
+          if (-not (Get-Command ISCC.exe -ErrorAction SilentlyContinue) -and -not (Test-Path "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe")) { choco install innosetup --no-progress -y }
+      - name: "Stage 2 - make the installers"
+        if: vars.BUILD_INSTALLERS == 'true'
+        shell: pwsh
+        run: ./scripts/Build-PublicRelease.ps1 -Stage Installers -SignedBinaries artifacts/public/next-binaries
+      - name: Upload the unsigned installers
+        id: upload-installers
+        if: vars.BUILD_INSTALLERS == 'true'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: unsigned-installers
+          path: artifacts/public/installers
+      - name: Sign the installers (SignPath)
+        if: env.HAS_SIGNPATH == 'true' && vars.BUILD_INSTALLERS == 'true'
+        uses: signpath/github-action-submit-signing-request@f6d04783b4569d051e0c80105fe66e82819d0092 # v3
+        with:
+          api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
+          organization-id: ${{ vars.SIGNPATH_ORGANIZATION_ID }}
+          project-slug: ${{ vars.SIGNPATH_PROJECT_SLUG }}
+          signing-policy-slug: ${{ vars.SIGNPATH_SIGNING_POLICY_SLUG }}
+          artifact-configuration-slug: installers
+          github-artifact-id: ${{ steps.upload-installers.outputs.artifact-id }}
+          wait-for-completion: true
+          output-artifact-directory: artifacts/public/signed-installers
+      - name: The files to release, with checksums of what is really released
+        shell: pwsh
+        env:
+          VERSION: ${{ needs.verify.outputs.version }}
+        run: |
+          New-Item -ItemType Directory -Force -Path artifacts/public/release | Out-Null
+          if ($env:BUILD_INSTALLERS -eq 'true') {
+            $from = if ($env:HAS_SIGNPATH -eq 'true') { 'artifacts/public/signed-installers' } else { 'artifacts/public/installers' }
+            Copy-Item "$from/*" artifacts/public/release -Exclude SHA256SUMS.txt
+          } else {
+            # the programs only, under release names (they were signed in stage 1)
+            Copy-Item artifacts/public/next-binaries/host/ClassroomHost.exe "artifacts/public/release/Dausuva-Classroom-Host-$env:VERSION-win-x64.exe"
+            Copy-Item artifacts/public/next-binaries/client/ClassroomClient.exe "artifacts/public/release/Dausuva-Classroom-Client-$env:VERSION-win-x64.exe"
+          }
+          # What the programs are built from (CycloneDX), from the lock files CI restored against.
+          ./scripts/Export-Sbom.ps1 -Output artifacts/public/release/sbom.cdx.json
+          $lines = Get-ChildItem artifacts/public/release -File | Sort-Object Name | ForEach-Object {
+            "$((Get-FileHash $_.FullName -Algorithm SHA256).Hash.ToLowerInvariant())  $($_.Name)" }
+          [IO.File]::WriteAllText("$PWD/artifacts/public/release/SHA256SUMS.txt", (($lines -join "`n") + "`n"))
+      # Microsoft Defender looks at every file before it is published; nothing is uploaded. A detection stops the release. If Defender is not the active
+      # antivirus on the runner the check is reported as incomplete (exit 2), which does not stop it: winget and the Store scan again on their side.
+      - name: Antivirus pre-check
+        shell: pwsh
+        run: ./scripts/Test-AntivirusPrecheck.ps1 -Path artifacts/public/release -ReportFolder artifacts/av-precheck -UpdateSignatures -SelfTest -AllowIncomplete
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: av-precheck
+          path: artifacts/av-precheck
+          if-no-files-found: ignore
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: release-files
+          path: artifacts/public/release
+
+  release:
+    needs: [verify, binaries, installers]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: release-files
+          path: release
+      - name: Same files under names without the version
+        # The website links to https://github.com/dausuva/classroom-manager/releases/latest/download/<name>, which needs a name that never changes.
+        # The copies are made after signing, from the files that will be released, and listed in SHA256SUMS.txt.
+        run: |
+          cd release
+          for kind in Host-Setup Client-Setup Host Client; do
+            file=$(ls Dausuva-Classroom-${kind}-[0-9]*-win-x64.exe 2>/dev/null | head -n 1 || true)
+            [ -n "$file" ] || continue
+            cp "$file" "Dausuva-Classroom-${kind}-win-x64.exe"
+            sha256sum "Dausuva-Classroom-${kind}-win-x64.exe" >> SHA256SUMS.txt
+          done
+          ls -l
+      - name: Create the GitHub release
+        uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2
+        with:
+          tag_name: ${{ env.RELEASE_TAG }}
+          name: Classroom Manager ${{ needs.verify.outputs.version }}${{ needs.binaries.outputs.signed != 'true' && ' (unsigned)' || '' }}
+          prerelease: false
+          make_latest: true
+          generate_release_notes: true
+          fail_on_unmatched_files: true
+          files: release/*
+          body: |
+            ${{ needs.binaries.outputs.signed == 'true' && 'Free code signing provided by [SignPath.io](https://signpath.io), certificate by [SignPath Foundation](https://signpath.org). See the [code signing policy](https://github.com/dausuva/classroom-manager/blob/main/CODE_SIGNING_POLICY.md).' || '**Unsigned build:** the signing service was not configured for this release, so Windows will show a warning.' }}
+
+            Check a download against `SHA256SUMS.txt`.
+
+  winget:
+    # Switched on by the repository variable WINGET_ENABLED=true once the first manifests have been merged into microsoft/winget-pkgs by hand (see the guide).
+    needs: [verify, release]
+    if: vars.WINGET_ENABLED == 'true'
+    runs-on: windows-2025
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ env.RELEASE_TAG }}
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: release-files
+          path: release
+      - name: Manifests for the record, and the update pull request
+        shell: pwsh
+        env:
+          WINGET_PAT: ${{ secrets.WINGET_PAT }}
+          VERSION: ${{ needs.verify.outputs.version }}
+        run: |
+          $base = "https://github.com/dausuva/classroom-manager/releases/download/$env:RELEASE_TAG"
+          $setups = @(
+            @{ Component = 'Host';         Id = 'Dausuva.ClassroomHost';          File = "Dausuva-Classroom-Host-Setup-$env:VERSION-win-x64.exe" },
+            @{ Component = 'Client';       Id = 'Dausuva.ClassroomClient';        File = "Dausuva-Classroom-Client-Setup-$env:VERSION-win-x64.exe" },
+            @{ Component = 'HostPortable'; Id = 'Dausuva.ClassroomHost.Portable'; File = "Dausuva-Classroom-Host-$env:VERSION-win-x64.exe" })
+          $setups = @($setups | Where-Object { Test-Path "release/$($_.File)" })
+          foreach ($setup in $setups) {
+            ./scripts/winget/New-WingetManifests.ps1 -Component $setup.Component -Version $env:VERSION -InstallerUrl "$base/$($setup.File)" -InstallerPath "release/$($setup.File)" -OutputRoot winget-out
+          }
+          Invoke-WebRequest https://aka.ms/wingetcreate/latest -OutFile wingetcreate.exe
+          foreach ($setup in $setups) {
+            ./wingetcreate.exe update $setup.Id --version $env:VERSION --urls "$base/$($setup.File)|x64" --submit --token $env:WINGET_PAT
+          }
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: winget-manifests
+          path: winget-out
+
+  msix:
+    # Switched on by STORE_ENABLED=true after the Partner Center account exists and scripts/Set-StoreIdentity.ps1 has put the identity in the manifest.
+    # The package project and build-msix.ps1 are not in the public source (the Store package definitions are made from the private tree, a rule
+    # PublicSourceExportTests enforces), so in the public repository this job only works if the owner decides to publish them (docs/REVIEW-INDEX.md item 12b).
+    needs: verify
+    if: vars.STORE_ENABLED == 'true'
+    runs-on: windows-2025
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ env.RELEASE_TAG }}
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4
+        with:
+          global-json-file: global.json
+      - name: Build the MSIX (the Store signs it, so it is uploaded unsigned)
+        shell: pwsh
+        run: ./scripts/build-msix.ps1 -RuntimeMode SelfContained
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: msix
+          path: artifacts/msix/latest
+      # Microsoft: publishing from GitHub Actions works for FREE products that are already live in the Store; the paid Host is submitted by hand in Partner Center,
+      # and the first submission of the free one is by hand too (docs/release/AUTOMATIC-RELEASE-GUIDE.md).
+      - name: Set up the Microsoft Store Developer CLI
+        if: vars.STORE_PUBLISH == 'true'
+        uses: microsoft/microsoft-store-apppublisher@15abd1c50fcc164b19cb240fb04ef3c49bf715a2 # v1.1
+      - name: Send the package to Partner Center
+        if: vars.STORE_PUBLISH == 'true'
+        shell: pwsh
+        run: |
+          msstore reconfigure --tenantId ${{ secrets.AZURE_AD_TENANT_ID }} --sellerId ${{ secrets.SELLER_ID }} --clientId ${{ secrets.AZURE_AD_APPLICATION_CLIENT_ID }} --clientSecret ${{ secrets.AZURE_AD_APPLICATION_SECRET }}
+          $package = Get-ChildItem artifacts/msix/latest -Recurse -Filter *.msix | Select-Object -First 1
+          msstore publish $package.FullName -id ${{ vars.STORE_PRODUCT_ID }}

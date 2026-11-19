@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>$(ClassroomTargetFramework)</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>ClassroomManager.Shared</RootNamespace>
+    <AssemblyTitle>Classroom Manager Shared</AssemblyTitle>
+    <Description>Wire protocol and authenticated channel shared by the Classroom Manager client and host.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- The built-in Lithuanian translation (see Localization.cs); English is the text in the source. -->
+    <EmbeddedResource Include="..\..\locale\lt-LT.po" LogicalName="locale.lt-LT.po" />
+  </ItemGroup>
+
+</Project>

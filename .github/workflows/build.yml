@@ -1,0 +1,84 @@
+# Copyright (c) 2026 Dausuva Labs
+# SPDX-License-Identifier: Apache-2.0
+#
+# Builds the solution, runs every test project and publishes the free, unsigned 64-bit programs
+# on every push and pull request. Nothing here signs, releases or publishes anything outside this run.
+name: Build and test
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    # Windows Server 2025: the Host is a WPF app, and the button-icon tests read the icon fonts that
+    # Windows 10 and 11 ship (segmdl2.ttf and SegoeIcons.ttf), which this image has.
+    runs-on: windows-2025
+    timeout-minutes: 45
+    env:
+      DOTNET_NOLOGO: "true"
+      DOTNET_CLI_TELEMETRY_OPTOUT: "true"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Restore
+        run: dotnet restore ClassroomManager.sln
+
+      # PowerShell 7 from dotnet-tools.json runs the script tests.
+      - name: Restore tools
+        run: dotnet tool restore
+
+      # A new warning fails the build: the code base is kept warning-clean on purpose.
+      - name: Build
+        run: dotnet build ClassroomManager.sln -c Debug --no-restore -warnaserror
+
+      - name: Test
+        shell: pwsh
+        run: |
+          $failed = $false
+          foreach ($project in @('ClassroomManager.Shared.Tests', 'ClassroomHost.Tests', 'ClassroomClient.Tests')) {
+            dotnet test "tests/$project/$project.csproj" -c Debug --no-build --logger "trx;LogFileName=$project.trx" --results-directory TestResults
+            if ($LASTEXITCODE -ne 0) { $failed = $true }
+          }
+          if ($failed) { exit 1 }
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: TestResults/*.trx
+          if-no-files-found: ignore
+
+      # The documented way to build: Build-Free.ps1 must work on a clean runner with only the .NET SDK.
+      - name: Build the free self-built version
+        shell: pwsh
+        run: ./Build-Free.ps1
+
+      - name: Check that the output is unsigned and marked as self-built
+        shell: pwsh
+        run: |
+          foreach ($exe in 'free-build/client/ClassroomClient.exe', 'free-build/host/ClassroomHost.exe') {
+            $signature = (Get-AuthenticodeSignature $exe).Status
+            if ($signature -ne 'NotSigned') { throw "$exe must be unsigned, found: $signature" }
+            if (-not (Get-Item $exe).VersionInfo.ProductVersion.EndsWith('-self-built')) { throw "$exe is not marked as self-built." }
+          }
+          if (-not (Test-Path 'free-build/host/SELF-BUILT-UNOFFICIAL.txt')) { throw 'The unofficial notice is missing.' }
+
+      - name: Upload the free build
+        uses: actions/upload-artifact@v4
+        with:
+          name: free-build-win-x64
+          path: free-build

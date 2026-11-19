@@ -1,0 +1,5 @@
+# Git hooks run under sh, which fails on Windows line endings.
+.githooks/* text eol=lf
+
+# demo files are byte-exact (a PDF carries byte offsets; images and zips are binary)
+scripts/screencast/demo-assets/** binary

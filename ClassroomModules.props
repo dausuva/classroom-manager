@@ -1,0 +1,20 @@
+<Project>
+  <!--
+    Which optional modules are built into the Host. Change a value to false, then build again
+    (Build-Free.ps1 or dotnet build). The public source export keeps this file, so a self-built
+    version can be made smaller by editing it.
+
+    Only the two inventory modules can be left out of a build today. The other five (scheduling,
+    student-work backup, Appearance, software inventory, Windows maintenance) are woven into the
+    Host's windows and schedules, so they are always built in; a person can still switch every one
+    of them off in Host settings. Appearance is one of the always-built-in (core) modules.
+
+    A value given on the command line (-p:EnableReportingModule=false) wins over this file.
+  -->
+  <PropertyGroup>
+    <!-- Inventory CSV export (hardware and software report). -->
+    <EnableReportingModule Condition="'$(EnableReportingModule)' == ''">true</EnableReportingModule>
+    <!-- Browser inventory: default browser, policies and profiles, read-only. -->
+    <EnableBrowserInventoryModule Condition="'$(EnableBrowserInventoryModule)' == ''">true</EnableBrowserInventoryModule>
+  </PropertyGroup>
+</Project>

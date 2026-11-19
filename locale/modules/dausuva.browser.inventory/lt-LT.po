@@ -1,0 +1,89 @@
+# Classroom Manager translation file (gettext PO).
+# msgid is the English text and must not be changed; msgstr is its translation.
+# Keep every {0}, {1}... of the English text in the translation; they stand for a number or a name.
+# An underscore marks the keyboard shortcut letter of a button (Alt+letter); put it before a letter of your choice or leave it out.
+msgid ""
+msgstr ""
+"Language: lt-LT\n"
+"Language-Name: Lietuvių\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+#: ClassroomHost/MainWindow.xaml.cs
+msgid "Policies read from {0} of {1} computer(s):"
+msgstr "Strategijos nuskaitytos iš {0} iš {1} kompiuterių:"
+
+#: ClassroomHost/MainWindow.xaml.cs
+msgid "• {0}: on at {1} of {2} computers"
+msgstr "• {0}: įjungta {1} iš {2} kompiuterių"
+
+#: ClassroomHost/BrowserInventorySummary.cs
+msgid "Browser inventory could not be read. See the per-computer read status."
+msgstr "Naršyklių informacijos nuskaityti nepavyko. Žr. kiekvieno kompiuterio nuskaitymo būseną."
+
+#: ClassroomHost/BrowserInventorySummary.cs
+msgid "Browsers read from {0} of {1} computer(s):"
+msgstr "Naršyklės nuskaitytos iš {0} iš {1} kompiuterių:"
+
+#: ClassroomHost/BrowserInventorySummary.cs
+msgid "• {0}: on all {1} computers"
+msgstr "• {0}: visuose {1} kompiuteriuose"
+
+#: ClassroomHost/BrowserInventorySummary.cs
+msgid "• {0}: on {1} of {2} computers; missing on {3}"
+msgstr "• {0}: {1} iš {2} kompiuterių; nėra: {3}"
+
+#: ClassroomHost/BrowserInventorySummary.cs
+msgid "• Also: {0}"
+msgstr "• Taip pat: {0}"
+
+#: ClassroomHost/BrowserInventorySummary.cs
+msgid "Opens web links for the signed-in user: {0}"
+msgstr "Prisijungusiam naudotojui interneto nuorodas atidaro: {0}"
+
+#: ClassroomHost/BrowserInventorySummary.cs
+msgid "Default set at sign-in: {0}"
+msgstr "Prisijungiant nustatoma numatytoji: {0}"
+
+#: ClassroomHost/BrowserInventorySummary.cs
+msgid "Browser profiles were not read; their state is unknown."
+msgstr "Naršyklių profiliai nenuskaityti; jų būsena nežinoma."
+
+#: ClassroomHost/BrowserInventorySummary.cs
+msgid "Profiles read from {0} of {1} computer(s):"
+msgstr "Profiliai nuskaityti iš {0} iš {1} kompiuterių:"
+
+#: ClassroomHost/BrowserInventorySummary.cs
+msgid "No extra profiles were found on the computers whose profiles were read."
+msgstr "Kompiuteriuose, kurių profiliai nuskaityti, papildomų profilių nerasta."
+
+#: ClassroomHost/BrowserInventorySummary.cs
+msgid "Extra browser profiles:"
+msgstr "Papildomi naršyklių profiliai:"
+
+#: ClassroomHost/BrowserInventorySummary.cs
+msgid "not supported"
+msgstr "nepalaikoma"
+
+#: ClassroomHost/BrowserInventorySummary.cs
+msgid "no signed-in user"
+msgstr "nėra prisijungusio naudotojo"
+
+#: ClassroomHost/BrowserInventorySummary.cs
+msgid "Incomplete inventory (unread data is unknown):"
+msgstr "Ne visa informacija nuskaityta (nenuskaityti duomenys nežinomi):"
+
+#: ClassroomHost/BrowserInventorySummary.cs
+msgid "{0}: policies {1}, browsers {2}, profiles {3}"
+msgstr "{0}: strategijos {1}, naršyklės {2}, profiliai {3}"
+
+#: ClassroomHost/BrowserInventorySummary.cs
+msgid "read"
+msgstr "nuskaityta"
+
+#: ClassroomHost/BrowserInventorySummary.cs
+msgid "unavailable"
+msgstr "nepasiekiama"
+
+#: ClassroomHost/BrowserInventorySummary.cs
+msgid "failed"
+msgstr "nepavyko"

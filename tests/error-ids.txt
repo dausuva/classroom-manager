@@ -1,0 +1,26 @@
+# Every error id ever issued (T-134), with the title it was issued for. Never remove a line; see ErrorCatalogTests.
+000001 Unexpected error
+010001 The computer refused the connection
+010002 The computer cannot be reached
+010003 The computer stopped answering
+010004 The connection was closed
+020001 Wrong key
+020002 The computer ignores this PC for a few minutes
+020003 The key of this connection was removed
+020004 The computer did not prove it knows the key
+020005 No lab key on this PC
+030001 The computer's certificate is not approved
+030002 The computer shows a different certificate
+030003 The encrypted connection could not be set up
+040001 Not allowed with this key
+040002 Too many requests
+040003 Not done on the Host's own computer
+040004 A dangerous action was not allowed
+040005 Another operation is running on this computer
+040006 Only in this key's own upload folder
+050001 The Client is too old for this
+070001 The update is not newer
+070002 The update is for another kind of Windows
+070003 The update cannot start on this computer
+070004 The update file failed its checks
+0A0001 The computer could not do it

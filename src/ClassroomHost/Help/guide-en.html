@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Classroom Manager – teacher guide</title>
+<link rel="stylesheet" href="guide.css">
+</head>
+<body>
+<header>
+  <h1>Classroom Manager – teacher guide</h1>
+  <p class="lead">What you need for a lesson, in the order you will meet it. Press <kbd>F1</kbd> in Classroom Manager to open this page again.</p>
+  <nav>
+    <a href="#start">Getting started</a>
+    <a href="#window">The main window</a>
+    <a href="#lesson">During a lesson</a>
+    <a href="#files">Files</a>
+    <a href="#restrict">Restrictions and exams</a>
+    <a href="#results">Results and the log</a>
+    <a href="#settings">Settings</a>
+    <a href="#trouble">When something does not work</a>
+  </nav>
+</header>
+
+<section id="start">
+  <h2>Getting started</h2>
+  <ol>
+    <li><strong>Get your key.</strong> Your administrator gives you either a file (<em>teacher-settings.json</em>) or a key to type in. Classroom Manager offers both the first time it starts; later they are under <strong>Settings &gt; Import teacher settings...</strong> and <strong>Settings &gt; Host settings...</strong></li>
+    <li><strong>Find the computers.</strong> A settings file brings them along. Otherwise choose <strong>Computers &gt; Scan network</strong>. If a computer says <em>connection failed</em> because its certificate is not approved yet, tick it and choose <strong>Approve certificate...</strong>: the Host shows the certificate the computer presents and whether it is new or changed, and asks <strong>Trust and connect</strong>. Compare the fingerprint with Classroom Client Health on that computer first.</li>
+    <li><strong>Put them in a room.</strong> Tick the computers and choose <strong>Assign to room...</strong>. Only computers in a room are checked every 30 seconds.</li>
+  </ol>
+  <p class="note">A Teacher key runs lessons: lock, message, files, websites, wallpaper, block lists, Exam mode and power. Installing software and changing how computers are set up needs an Admin key; with a Teacher key those buttons answer that the computer refused.</p>
+</section>
+
+<section id="window">
+  <h2>The main window</h2>
+  <img src="img/en/main-01-overview.png" alt="The main window with the Overview tab and six computers">
+  <ul>
+    <li><strong>Tabs at the top</strong> group the actions: Overview holds your chosen quick actions; the others group the remaining commands by task.</li>
+    <li><strong>The list</strong> shows each computer, who is signed in and its state. A green dot is online, amber needs attention, grey is offline.</li>
+    <li><strong>Tick computers first, then choose an action.</strong> The grey banner above the list always says which computers the next action will reach. <strong>All</strong>, <strong>None</strong>, <strong>Invert</strong>, <strong>Online</strong> and <strong>Offline</strong> tick them for you (they act on the computers the list shows); <kbd>Ctrl</kbd>+<kbd>A</kbd> ticks all, <kbd>Esc</kbd> none.</li>
+    <li><strong>Quick actions</strong> in Overview are chosen in Interface settings. The banner's <strong>Actions</strong> section contains your custom buttons and is hidden when empty. More sections are alphabetical; use Arrange toolbar to reorder top rows.</li>
+    <li><strong>Computers / Operations / Log</strong> switch what the lower part shows.</li>
+  </ul>
+</section>
+
+<section id="lesson">
+  <h2>During a lesson</h2>
+  <div class="pair">
+    <figure><img src="img/en/classroom-lock-screen.png" alt="The Lock screens dialog"><figcaption>Lock screen...</figcaption></figure>
+    <figure><img src="img/en/classroom-message.png" alt="The Send message dialog"><figcaption>Message...</figcaption></figure>
+  </div>
+  <ul>
+    <li><strong>Lock screen...</strong> covers every monitor with your text until you press <strong>Unlock</strong>.</li>
+    <li><strong>Message...</strong> shows a notice on top of what the student is doing; it can close by itself after a number of seconds.</li>
+    <li><strong>Open website...</strong> and <strong>Open program...</strong> (Software tab) start the same page or program for everyone. <strong>Open website...</strong> also lets you choose the browser and whether its window opens maximized (on by default); a computer where that browser is not installed uses its default browser, and a computer with an older Client opens the page in its default browser as before.</li>
+    <li><strong>Set wallpaper...</strong> (Classroom tab) puts a picture or a plain colour on the students' desktops.</li>
+    <li><strong>Wake up</strong> (Computers tab) switches on computers that support it, and wakes the screen of ones that are already on.</li>
+    <li><strong>Power...</strong> (Classroom tab) shuts down, restarts or signs out at the end of the lesson. Students are warned first.</li>
+  </ul>
+</section>
+
+<section id="files">
+  <h2>Files</h2>
+  <img src="img/en/files-collect-files.png" alt="The Collect files dialog">
+  <ul>
+    <li><strong>Send files...</strong> puts files into each student's Desktop, Documents or Downloads.</li>
+    <li><strong>Collect files...</strong> copies the students' work to your computer, one folder per student. The originals stay where they are.</li>
+    <li><strong>Recent files...</strong> lists what the students changed lately (the last 30 minutes unless you choose another time) on their Desktop and in Documents, by type: documents, images, source code and folders. Copy the files you select, or all of them, to your computer; a newer version replaces the earlier copy. <strong>Watched folders...</strong> sets other folders for a computer, and the copies are deleted after the number of days you choose.</li>
+    <li><strong>Transfer history...</strong> lists what you sent and can take an unchanged file back.</li>
+  </ul>
+</section>
+
+<section id="restrict">
+  <h2>Restrictions and exams</h2>
+  <div class="pair">
+    <figure><img src="img/en/restrictions-websites-in-use.png" alt="The Websites in use dialog"><figcaption>Websites in use...</figcaption></figure>
+    <figure><img src="img/en/restrictions-exam-mode-settings.png" alt="The Exam mode settings dialog"><figcaption>Exam mode settings...</figcaption></figure>
+  </div>
+  <ul>
+    <li><strong>Websites in use...</strong> shows which sites are open right now; tick the ones to block.</li>
+    <li><strong>Block websites...</strong> and <strong>Block apps...</strong> keep a list on each computer until you change it.</li>
+    <li><strong>Exam mode</strong> adds a temporary set of blocked websites and programs, and can mute sound, switch cameras off and block USB drives and phones. Switching it off removes only what the exam added.</li>
+  </ul>
+  <p class="note">Blocking a website stops the name, not the internet: a student with a VPN can still get around it. Treat it as a deterrent.</p>
+</section>
+
+<section id="results">
+  <h2>Results and the log</h2>
+  <img src="img/en/main-view-operations.png" alt="The Operations view">
+  <ul>
+    <li><strong>Operations</strong> lists what you started and how it ended on each computer. <strong>Open results</strong> (or a double-click) shows the computers one by one; <strong>Retry failed</strong> repeats the action only where it did not work. <strong>Undo</strong> takes it back where it worked: it unlocks after a lock, hides a message, cancels a shutdown that is still counting down, and puts back the previous wallpaper or screen saver. Actions that cannot be taken back leave the button grey.</li>
+    <li><strong>Log</strong> is the same in time order. It is also kept as a file per day; <strong>Open log folder</strong> shows them.</li>
+  </ul>
+</section>
+
+<section id="settings">
+  <h2>Settings</h2>
+  <img src="img/en/main-08-settings.png" alt="The Settings tab">
+  <ul>
+    <li><strong>Mode: Teacher / Admin</strong> shortens or lengthens the toolbars. It does not change what your key may do.</li>
+    <li><strong>Interface settings...</strong> chooses the language (English, Lithuanian or one you added under <strong>Languages...</strong>), light or dark, and your quick actions.</li>
+    <li><strong>Schedules...</strong> runs lock, message, wake, time sync, shut down and other actions at set times, for all computers, a room or chosen ones. Every Host has <em>Sync the computers' time</em> ready but switched off; enable it to set the clocks each morning. With <em>Catch up</em> ticked (Sync time and Run command), a computer that was off at that time gets it as soon as it is online. Schedules run while the Host is open; tick <em>Run schedules also when the Host is closed</em> in <strong>Host settings...</strong> and Windows runs them while you are signed in, without the window.</li>
+    <li><strong>Settings backups...</strong> puts back an earlier copy of your settings. <strong>Export configuration...</strong> saves everything, keys included, in one password-protected file to keep somewhere else.</li>
+    <li><strong>Secure this lab...</strong> (under <em>More administration and support actions</em>) asks the computers and lists what is weaker than it should be: certificates that are not approved, computers still on the lab key itself, old Client versions, the old discovery answer, a key that is more than a year old, failed handshakes. Red is a problem, yellow a weakness; the last column names the command that fixes it. It only looks. An administrator can print the same report with <em>ClassroomCli security</em>.</li>
+  </ul>
+</section>
+
+<section id="trouble">
+  <h2>When something does not work</h2>
+  <table>
+    <tr><th>What the list says</th><th>What it means</th><th>What to do</th></tr>
+    <tr><td>Offline (no reply)</td><td>The computer is off, asleep or on another network.</td><td>Use <strong>Wake up</strong>, or switch it on.</td></tr>
+    <tr><td>Wrong shared key</td><td>The computer does not accept your key.</td><td>Ask your administrator for the key of this room.</td></tr>
+    <tr><td>Online - nobody signed in</td><td>The computer is on but no student has signed in.</td><td>Actions for the student (lock, message, files) wait until someone signs in.</td></tr>
+    <tr><td>PC is on, but the client is not reachable</td><td>Classroom Client on that computer is stopped or blocked by the firewall.</td><td>Run <em>Client-Health</em> from the setup kit on that computer; it says what is in the way.</td></tr>
+    <tr><td>An action answers "needs an Admin key"</td><td>Your key is a Teacher key.</td><td>Ask your administrator to do it, or for an Admin key.</td></tr>
+  </table>
+  <p>Use <strong>Feedback</strong> (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd>) to describe a problem on the screen where it happened.</p>
+</section>
+
+<footer>The pictures show an imaginary lab of six computers. Every window of the program is pictured in <em>docs/help/screenshots.md</em> of the project.</footer>
+</body>
+</html>

@@ -1,0 +1,105 @@
+# ---- Classroom Manager -----------------------------------------------------
+# Build output produced by deploy\Publish-Client.ps1 / Publish-Host.ps1
+/publish-client/
+/publish-host/
+/publish-client-shared-runtime/
+/publish-host-shared-runtime/
+/publish-health/
+/publish-health-shared-runtime/
+/publish-client-health/
+/publish-client-health-shared-runtime/
+/publish-client-x86/
+/publish-host-x86/
+/publish-client-shared-runtime-x86/
+/publish-host-shared-runtime-x86/
+/publish-health-x86/
+/publish-health-shared-runtime-x86/
+/publish-client-health-x86/
+/publish-client-health-shared-runtime-x86/
+/artifacts/
+/packaging/ClassroomManager.Host.Package/Assets/
+
+# Release bundles produced by scripts\release.ps1
+/dist/
+
+# Anything with the real shared key or other local secrets - never commit these.
+# (deploy\client.json.example is the template and IS tracked.)
+/.credentials/
+client.json
+access-keys.json
+*.pfx
+*.p12
+*.pvk
+*.key
+*.snk
+/lab-signing-public/
+/distribution-output/
+
+# Update/runtime logs if you ever end up testing against this checkout directly
+*.log
+update.log
+.codex_home/
+_codex_logs/
+.codex-logs/
+
+# ---- .NET / Visual Studio --------------------------------------------------
+__pycache__/
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+!/docs/release/
+*.user
+*.userosscache
+*.sln.docstates
+*.suo
+
+# NuGet
+*.nupkg
+*.snupkg
+**/packages/*
+!**/packages/build/
+.nuget/
+
+# Build results
+[Bb]uild/
+[Ll]og/
+[Ll]ogs/
+[Tt]estResults/
+
+# ---- IDE state (not project config) ----------------------------------------
+.vs/
+.idea/
+*.iml
+*.DotSettings.user
+
+# VS Code (if anyone opens this there)
+.vscode/*
+!.vscode/extensions.json
+
+# ---- OS cruft ---------------------------------------------------------------
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# Output of Build-Free.ps1 and editor folders
+/free-build/
+.idea/
+
+# Books: downloaded digital copies (docs/books/sources.json records them)
+/docs/books/sources/*.pdf
+
+# Research snapshots: other people's pages kept locally (scripts/research/Snapshot-Sources.ps1); INDEX.json is committed
+/docs/research/snapshots/*/
+
+# Mutation testing output (scripts/Test-Mutation.ps1)
+StrykerOutput/
+packaging/ClassroomManager.Host.Package/packages.lock.json
+
+# Local JavaScript tooling dependencies
+node_modules/
+
+# Inputs for data and feedbacks
+uploads/

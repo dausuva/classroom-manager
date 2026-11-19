@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Stage 1 of the release: the two programs, signed before they go into the installers. The zip is the folder scripts/Build-PublicRelease.ps1 -Stage Binaries makes. -->
+<artifact-configuration xmlns="http://signpath.io/artifact-configuration/v1">
+  <zip-file>
+    <pe-file path="host/ClassroomHost.exe">
+      <authenticode-sign/>
+    </pe-file>
+    <pe-file path="client/ClassroomClient.exe">
+      <authenticode-sign/>
+    </pe-file>
+  </zip-file>
+</artifact-configuration>

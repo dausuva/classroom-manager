@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- A module for Classroom Manager built against the public contract only. See docs/MODULE-SDK.md. -->
+  <PropertyGroup>
+    <TargetFramework Condition="'$(ClassroomTargetFramework)' != ''">$(ClassroomTargetFramework)</TargetFramework>
+    <TargetFramework Condition="'$(ClassroomTargetFramework)' == ''">net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>ClassroomManager.Samples.Hello</RootNamespace>
+    <AssemblyName>Example.Hello</AssemblyName>
+    <IsPackable>false</IsPackable>
+    <!-- The contract is not copied into the package: the Host already has it. -->
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Inside this repository the contract project is referenced. Outside it, build the contract once and pass -p:ContractDll=<path to ClassroomManager.Modules.Contract.dll>. -->
+    <ProjectReference Condition="'$(ContractDll)' == ''" Include="..\..\..\src\Modules\Contract\ClassroomManager.Modules.Contract.csproj" Private="false" />
+    <Reference Condition="'$(ContractDll)' != ''" Include="ClassroomManager.Modules.Contract">
+      <HintPath>$(ContractDll)</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+</Project>

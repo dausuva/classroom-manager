@@ -1,0 +1,19 @@
+name: Feature request
+description: Something the program should do
+labels: [enhancement]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: What do you need to do in the classroom, and what is hard today
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: How would you like it to work
+  - type: textarea
+    id: privacy
+    attributes:
+      label: Does it involve pupils' data, screens or accounts
+      description: This project does not capture or record pupil screens; say what data would be involved so it can be assessed.
