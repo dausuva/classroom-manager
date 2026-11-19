@@ -10,12 +10,12 @@
       },
       "Microsoft.NET.Test.Sdk": {
         "type": "Direct",
-        "requested": "[17.11.1, )",
-        "resolved": "17.11.1",
-        "contentHash": "U3Ty4BaGoEu+T2bwSko9tWqWUOU16WzSFkq6U8zve75oRBMSLTBdMAZrVNNz1Tq12aCdDom9fcOcM9QZaFHqFg==",
+        "requested": "[18.12.0, )",
+        "resolved": "18.12.0",
+        "contentHash": "MdVkskM2ZCKSlNts5DIbz9MZidX7SwcXKBoBqY4XT91b30hAwC8PkjWbdGKRak6BKAD1BQqaZnh/SD0AJGoDCQ==",
         "dependencies": {
-          "Microsoft.CodeCoverage": "17.11.1",
-          "Microsoft.TestPlatform.TestHost": "17.11.1"
+          "Microsoft.CodeCoverage": "18.12.0",
+          "Microsoft.TestPlatform.TestHost": "18.12.0"
         }
       },
       "xunit": {
@@ -37,8 +37,8 @@
       },
       "Microsoft.CodeCoverage": {
         "type": "Transitive",
-        "resolved": "17.11.1",
-        "contentHash": "nPJqrcA5iX+Y0kqoT3a+pD/8lrW/V7ayqnEJQsTonSoPz59J8bmoQhcSN4G8+UJ64Hkuf0zuxnfuj2lkHOq4cA=="
+        "resolved": "18.12.0",
+        "contentHash": "OhOPSaCAQhBJgXF1OrX0uK3eTkwZ1XnM44iGLZplYgKrmgKzQUdv9xtGGaE568RuQ738TlrTJ3pm9aWL5FH7iw=="
       },
       "Microsoft.Extensions.Configuration": {
         "type": "Transitive",
@@ -331,22 +331,16 @@
       },
       "Microsoft.TestPlatform.ObjectModel": {
         "type": "Transitive",
-        "resolved": "17.11.1",
-        "contentHash": "E2jZqAU6JeWEVsyOEOrSW1o1bpHLgb25ypvKNB/moBXPVsFYBPd/Jwi7OrYahG50J83LfHzezYI+GaEkpAotiA=="
+        "resolved": "18.12.0",
+        "contentHash": "ilT2o4v/c1joLgsfzS4dYQ71bWAy/RsA6fBY7f5OEUpUsUhwIzoliGeXdS3yctWuy4NZyuSVlO7dPX4ed7R06A=="
       },
       "Microsoft.TestPlatform.TestHost": {
         "type": "Transitive",
-        "resolved": "17.11.1",
-        "contentHash": "DnG+GOqJXO/CkoqlJWeDFTgPhqD/V6VqUIL3vINizCWZ3X+HshCtbbyDdSHQQEjrc2Sl/K3yaxX6s+5LFEdYuw==",
+        "resolved": "18.12.0",
+        "contentHash": "WTT912JUqmFa2BkCeXPkMCUpbYOqsbeRfRJdhaIQROx49iokgnGPAlKvXmHWKC9nJwWrHwSQfR+k+Qn7NCxfzw==",
         "dependencies": {
-          "Microsoft.TestPlatform.ObjectModel": "17.11.1",
-          "Newtonsoft.Json": "13.0.1"
+          "Microsoft.TestPlatform.ObjectModel": "18.12.0"
         }
-      },
-      "Newtonsoft.Json": {
-        "type": "Transitive",
-        "resolved": "13.0.1",
-        "contentHash": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A=="
       },
       "System.CodeDom": {
         "type": "Transitive",
@@ -451,54 +445,48 @@
       "classroomclient": {
         "type": "Project",
         "dependencies": {
-          "ClassroomManager.Shared": "[1.2.0, )",
+          "ClassroomManager.Shared": "[1.2.1, )",
           "Microsoft.Extensions.Hosting.WindowsServices": "[10.0.0, )",
           "System.DirectoryServices.AccountManagement": "[10.0.0, )",
           "System.Management": "[10.0.0, )"
         }
       },
-      "classroomhealth": {
-        "type": "Project",
-        "dependencies": {
-          "ClassroomHost": "[1.2.0, )"
-        }
-      },
       "classroomhost": {
         "type": "Project",
         "dependencies": {
-          "ClassroomManager.Appearance": "[1.2.0, )",
-          "ClassroomManager.Automation": "[1.2.0, )",
-          "ClassroomManager.BrowserInventory": "[1.2.0, )",
-          "ClassroomManager.Maintenance": "[1.2.0, )",
-          "ClassroomManager.Modules.Runtime": "[1.2.0, )",
-          "ClassroomManager.Reporting": "[1.2.0, )",
-          "ClassroomManager.Shared": "[1.2.0, )",
-          "ClassroomManager.SoftwareInventory": "[1.2.0, )",
-          "ClassroomManager.StudentWork": "[1.2.0, )"
+          "ClassroomManager.Appearance": "[1.2.1, )",
+          "ClassroomManager.Automation": "[1.2.1, )",
+          "ClassroomManager.BrowserInventory": "[1.2.1, )",
+          "ClassroomManager.Maintenance": "[1.2.1, )",
+          "ClassroomManager.Modules.Runtime": "[1.2.1, )",
+          "ClassroomManager.Reporting": "[1.2.1, )",
+          "ClassroomManager.Shared": "[1.2.1, )",
+          "ClassroomManager.SoftwareInventory": "[1.2.1, )",
+          "ClassroomManager.StudentWork": "[1.2.1, )"
         }
       },
       "classroommanager.appearance": {
         "type": "Project",
         "dependencies": {
-          "ClassroomManager.Modules.Contract": "[1.2.0, )"
+          "ClassroomManager.Modules.Contract": "[1.2.1, )"
         }
       },
       "classroommanager.automation": {
         "type": "Project",
         "dependencies": {
-          "ClassroomManager.Modules.Contract": "[1.2.0, )"
+          "ClassroomManager.Modules.Contract": "[1.2.1, )"
         }
       },
       "classroommanager.browserinventory": {
         "type": "Project",
         "dependencies": {
-          "ClassroomManager.Modules.Contract": "[1.2.0, )"
+          "ClassroomManager.Modules.Contract": "[1.2.1, )"
         }
       },
       "classroommanager.maintenance": {
         "type": "Project",
         "dependencies": {
-          "ClassroomManager.Modules.Contract": "[1.2.0, )"
+          "ClassroomManager.Modules.Contract": "[1.2.1, )"
         }
       },
       "classroommanager.modules.contract": {
@@ -507,13 +495,13 @@
       "classroommanager.modules.runtime": {
         "type": "Project",
         "dependencies": {
-          "ClassroomManager.Modules.Contract": "[1.2.0, )"
+          "ClassroomManager.Modules.Contract": "[1.2.1, )"
         }
       },
       "classroommanager.reporting": {
         "type": "Project",
         "dependencies": {
-          "ClassroomManager.Modules.Contract": "[1.2.0, )"
+          "ClassroomManager.Modules.Contract": "[1.2.1, )"
         }
       },
       "classroommanager.shared": {
@@ -522,13 +510,13 @@
       "classroommanager.softwareinventory": {
         "type": "Project",
         "dependencies": {
-          "ClassroomManager.Modules.Contract": "[1.2.0, )"
+          "ClassroomManager.Modules.Contract": "[1.2.1, )"
         }
       },
       "classroommanager.studentwork": {
         "type": "Project",
         "dependencies": {
-          "ClassroomManager.Modules.Contract": "[1.2.0, )"
+          "ClassroomManager.Modules.Contract": "[1.2.1, )"
         }
       }
     },
